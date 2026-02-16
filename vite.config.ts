@@ -7,7 +7,7 @@ export default defineConfig({
   // For GitHub Pages: change '/portfolio/' to match your repo name
   // e.g. if your repo is 'my-portfolio', use base: '/my-portfolio/'
   // For custom domain, use base: '/'
-  base: '/portfolio/',
+  base: '/',
   optimizeDeps: {
     exclude: ['lucide-react'],
   },
