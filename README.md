@@ -1,46 +1,22 @@
-# 🔧 Mohamed Mahjoub — Portfolio
+# Mohamed Mahjoub, portfolio
 
-> **Mechanical engineering meets software innovation.**
+Source for [probler.uk](https://probler.uk): my projects, experience and downloadable CVs.
 
-Personal portfolio website showcasing projects spanning mechanical design, software development, and embedded systems.
+![Portfolio preview](docs/preview.png)
 
-🌐 **Live at [probler.uk](https://probler.uk)**
+First Class BEng (Hons) Mechanical Engineering graduate from Liverpool John Moores University. I design and analyse parts (CAD, FEA, topology optimisation) and build the electronics and software around them.
 
-![Portfolio Preview](docs/preview.png)
+## Editing
 
-## About
+All of the text lives in [`src/content.ts`](src/content.ts). The CV PDFs live in [`public/cv/`](public/cv); replace a file with one of the same name to update it.
 
-I'm a final-year Mechanical Engineering student at Liverpool John Moores University with a knack for bridging the gap between physical engineering and software. Whether it's optimising a suspension upright through FEA or writing a Discord bot from scratch, I enjoy solving problems across disciplines.
+## Stack
 
-This portfolio covers my work in:
-
-- **Mechanical Engineering** — FEA, topology optimisation, CAD, suspension design
-- **Software Development** — Python, JavaScript, TypeScript, MATLAB, Discord bots, web apps
-- **Maker & Electronics** — 3D printing, Arduino, soldering, motor control, mechatronics
-- **Simulation & Tools** — ANSYS, BeamNG, SolidWorks, data acquisition
-
-## Tech Stack
-
-| Layer | Technology |
-|-------|------------|
-| Framework | React + TypeScript |
-| Build Tool | Vite |
-| Styling | Tailwind CSS |
-| Deployment | GitHub Pages |
-
-## Local Development
+React, TypeScript and Vite, with plain CSS in [`src/styles.css`](src/styles.css) and the Archivo typeface self-hosted through Fontsource. Every push to `main` builds and deploys to GitHub Pages through [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml).
 
 ```bash
-git clone https://github.com/Probler-Yt/portfolio.git
-cd portfolio
 npm install
 npm run dev
 ```
-
-## Status
-
-🚧 Work in progress — actively adding projects and refining content.
-
-## License
 
 © 2026 Mohamed Mahjoub. All rights reserved.
