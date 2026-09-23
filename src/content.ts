@@ -4,7 +4,7 @@ export const CV_BASE: string = import.meta.env.VITE_CV_BASE ?? '/cv/';
 
 export const person = {
   name: 'Mohamed Mahjoub',
-  lede: 'Mechanical engineer who designs and analyses parts, and builds the electronics and software around them.',
+  lede: "I'm a mechanical engineer. I design and analyse parts, and I build the electronics and software that go around them.",
   email: 'MohamadMahjoub21@gmail.com',
   linkedin: 'https://www.linkedin.com/in/mohamed-mahjoub-457b2421b/',
   github: 'https://github.com/Probler-Yt',
@@ -131,13 +131,13 @@ export const moreWork: { title: string; text: string; link?: Link }[] = [
 
 export const experience: { when: string; title: string; where: string; text: string }[] = [
   {
-    when: '2024 – now',
+    when: '2024 - now',
     title: 'Localisation QA Tester',
     where: 'Universally Speaking, Liverpool',
     text: 'Testing AAA games to release standard across localisation and functionality, on live development builds. Two shipped credits. Jira and Jenkins.',
   },
   {
-    when: '2025 – 2026',
+    when: '2025 - 2026',
     title: 'Formula Student team member',
     where: 'Liverpool John Moores University',
     text: 'CAD, electronics integration and troubleshooting on the competition car.',
@@ -158,13 +158,13 @@ export const experience: { when: string; title: string; where: string; text: str
 
 export const education: { when: string; title: string; where: string; text: string }[] = [
   {
-    when: '2023 – 2026',
+    when: '2023 - 2026',
     title: 'BEng (Hons) Mechanical Engineering, First Class',
     where: 'Liverpool John Moores University',
     text: 'Top final-year modules: Sensors & Robotics 94, Finite Element Analysis 86, Industrial Management 82.',
   },
   {
-    when: '2021 – 2023',
+    when: '2021 - 2023',
     title: 'Technical A-levels',
     where: 'The Studio, Liverpool (studio school)',
     text: 'Computer Programming / IT D*D*, Engineering Merit.',
