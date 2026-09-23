@@ -24,8 +24,8 @@ export const titleBlock: { label: string; value: string; note?: string }[] = [
   },
   {
     label: 'Based in',
-    value: 'Liverpool, with a full UK driving licence',
-    note: 'Open to relocating for the right role',
+    value: 'Liverpool. British citizen, full right to work in the UK',
+    note: 'Full UK driving licence. Open to relocating for the right role',
   },
   {
     label: 'Looking for',
