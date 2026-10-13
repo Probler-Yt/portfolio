@@ -9,7 +9,7 @@ export const person = {
   linkedin: 'https://www.linkedin.com/in/mohamed-mahjoub-457b2421b/',
   github: 'https://github.com/Probler-Yt',
   repo: 'https://github.com/Probler-Yt/portfolio',
-  revision: 'Rev. Sep 2026',
+  revision: 'Rev. Oct 2026',
 };
 
 export const titleBlock: { label: string; value: string; note?: string }[] = [
@@ -144,9 +144,9 @@ export const experience: { when: string; title: string; where: string; text: str
   },
   {
     when: '2023',
-    title: 'Vehicle Mechanic',
+    title: 'Vehicle Mechanic (IMI placement)',
     where: 'Rimmers, Liverpool',
-    text: 'Fleet servicing, diagnostics and repairs, including engine and subframe removal and refitting.',
+    text: 'One of two mechanics keeping a fleet of disabled-access school vans on the road: scheduled safety inspections, servicing, diagnostics and repairs, including an engine and loom swap from a donor van to get a failed vehicle back in service on time.',
   },
   {
     when: '2021',
@@ -164,10 +164,16 @@ export const education: { when: string; title: string; where: string; text: stri
     text: 'Top final-year modules: Sensors & Robotics 94, Finite Element Analysis 86, Industrial Management 82.',
   },
   {
-    when: '2021 - 2023',
-    title: 'Technical A-levels',
+    when: '2023',
+    title: 'IMI Award in Automotive Maintenance',
+    where: 'Rocket Training, with a work placement at Rimmers',
+    text: 'Institute of the Motor Industry qualification, passed alongside the placement.',
+  },
+  {
+    when: '2022',
+    title: 'Cambridge Technical Level 3',
     where: 'The Studio, Liverpool (studio school)',
-    text: 'Computer Programming / IT D*D*, Engineering Merit.',
+    text: 'Diploma in IT D*D*, Extended Certificate in Engineering Merit, together equivalent to three A-levels. Also A-level Arabic A* (2021) and GCSEs including Maths, English Language and Computer Science.',
   },
 ];
 
@@ -184,20 +190,20 @@ export const cvs: { title: string; text: string; file: string; size: string; pri
     title: 'Mechanical and design',
     text: 'CAD, FEA and workshop skills first. My default CV.',
     file: 'Mohamed_Mahjoub_CV_Mechanical.pdf',
-    size: '49 KB',
+    size: '52 KB',
     primary: true,
   },
   {
     title: 'Electrical and embedded',
     text: 'Hardware, firmware and packaging it in CAD.',
     file: 'Mohamed_Mahjoub_CV_Electrical.pdf',
-    size: '48 KB',
+    size: '52 KB',
   },
   {
     title: 'Software and QA',
     text: 'For test, QA and software development roles.',
     file: 'Mohamed_Mahjoub_CV_Software_QA.pdf',
-    size: '46 KB',
+    size: '48 KB',
   },
 ];
 
