@@ -132,7 +132,7 @@ export const moreWork: { title: string; text: string; link?: Link }[] = [
 export const experience: { when: string; title: string; where: string; text: string }[] = [
   {
     when: '2024 - now',
-    title: 'Localisation QA Tester',
+    title: 'Localisation & Functionality QA Tester',
     where: 'Universally Speaking, Liverpool',
     text: 'Testing AAA games to release standard across localisation and functionality, on live development builds. Two shipped credits. Jira and Jenkins.',
   },
@@ -152,7 +152,7 @@ export const experience: { when: string; title: string; where: string; text: str
     when: '2021',
     title: 'Winner, DSTL Callisto Moon Base project',
     where: 'Defence Science and Technology Laboratory',
-    text: 'Led a team of four designing a lunar base concept, presented to DSTL.',
+    text: 'Chosen by my teacher to lead a team of four older A-level students while I was still at GCSE level. We designed a lunar base for Jupiter\'s moon Callisto, presented it to DSTL and won.',
   },
 ];
 
@@ -170,10 +170,16 @@ export const education: { when: string; title: string; where: string; text: stri
     text: 'Institute of the Motor Industry qualification, passed alongside the placement.',
   },
   {
-    when: '2022',
-    title: 'Cambridge Technical Level 3',
+    when: '2022 - 2023',
+    title: 'Foundation Year',
+    where: 'Coventry University',
+    text: 'The foundation year before starting my degree at LJMU.',
+  },
+  {
+    when: '2020 - 2022',
+    title: 'Level 3 qualifications',
     where: 'The Studio, Liverpool (studio school)',
-    text: 'Diploma in IT D*D*, Extended Certificate in Engineering Merit, together equivalent to three A-levels. Also A-level Arabic A* (2021) and GCSEs including Maths, English Language and Computer Science.',
+    text: 'Cambridge Technical Diploma in IT D*D*, Extended Certificate in Engineering Merit and A-level Arabic A*, together equivalent to four A-levels. GCSEs including Maths, English Language and Computer Science.',
   },
 ];
 
@@ -203,7 +209,7 @@ export const cvs: { title: string; text: string; file: string; size: string; pri
     title: 'Software and QA',
     text: 'For test, QA and software development roles.',
     file: 'Mohamed_Mahjoub_CV_Software_QA.pdf',
-    size: '48 KB',
+    size: '52 KB',
   },
 ];
 
