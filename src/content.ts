@@ -9,7 +9,7 @@ export const person = {
   linkedin: 'https://www.linkedin.com/in/mohamed-mahjoub-457b2421b/',
   github: 'https://github.com/Probler-Yt',
   repo: 'https://github.com/Probler-Yt/portfolio',
-  revision: 'Rev. Oct 2026',
+  revision: 'Rev. Nov 2026',
 };
 
 export const titleBlock: { label: string; value: string; note?: string }[] = [
@@ -158,6 +158,12 @@ export const experience: { when: string; title: string; where: string; text: str
 
 export const education: { when: string; title: string; where: string; text: string }[] = [
   {
+    when: '2026',
+    title: 'RTITB Counterbalance Lift Truck (in progress)',
+    where: 'FTW Training, Liverpool',
+    text: 'Funded logistics and forklift programme, plus supervised seat time loading and unloading real deliveries.',
+  },
+  {
     when: '2023 - 2026',
     title: 'BEng (Hons) Mechanical Engineering, First Class',
     where: 'Liverpool John Moores University',
@@ -210,6 +216,12 @@ export const cvs: { title: string; text: string; file: string; size: string; pri
     text: 'For test, QA and software development roles.',
     file: 'Mohamed_Mahjoub_CV_Software_QA.pdf',
     size: '52 KB',
+  },
+  {
+    title: 'Forklift and warehouse',
+    text: 'Counterbalance training, physical work and reliability first.',
+    file: 'Mohamed_Mahjoub_CV_Forklift_Warehouse.pdf',
+    size: '40 KB',
   },
 ];
 

@@ -5,7 +5,7 @@ export default function CVs() {
   return (
     <section id="cvs" className="section" aria-labelledby="cvs-title">
       <h2 id="cvs-title" className="section__title">CVs</h2>
-      <p className="section__intro">Three versions of the same one-page CV, each leading with a different side of my work. All PDF, updated October 2026.</p>
+      <p className="section__intro">One-page CVs, each leading with a different side of my work. All PDF, updated November 2026.</p>
       <ul className="cvs">
         {cvs.map((cv) => (
           <li key={cv.file} className="cvs__row">
