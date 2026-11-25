@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0d1014">
+<meta name="robots" content="noindex, nofollow">
+<title>Forklift Theory Practice | Mohamed Mahjoub</title>
+<meta name="description" content="Practice papers for the counterbalance lift truck (LTG1 B1/B4) knowledge test. Made by Mohamed Mahjoub.">
+<meta property="og:title" content="Forklift Theory Practice">
+<meta property="og:description" content="Counterbalance LTG1 B1/B4 practice papers. Practice or timed exam mode, marked like the real test.">
+<meta property="og:image" content="https://probler.uk/FTL/og.png">
+<meta property="og:url" content="https://probler.uk/FTL/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="icon.svg">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* VOICE: calm, plain-spoken, professional — a tool a 45-year-old warehouse lead trusts on first glance
+   IDEA: the Proserve "command centre" look: frosted panels over a dark, softly lit backdrop
+   PICTURE: the question card itself, with large rounded answer rows and app-style icon tiles
+   COLOUR and TYPE: charcoal night, frosted glass, forklift amber for identity, coral-to-crimson for actions; Roboto
+   LAYOUT: single centred column, page header with icon tile, floating pill bar for actions */
+:root{color-scheme:dark;--bg:#0d1014;--ink:#f4f5f7;--mute:#9aa1ab;--dim:#6b727c;
+--glass:linear-gradient(180deg,rgba(255,255,255,.085),rgba(255,255,255,.045));--line:rgba(255,255,255,.1);--hi:rgba(255,255,255,.14);
+--soft:rgba(255,255,255,.07);--soft2:rgba(255,255,255,.12);
+--act:linear-gradient(90deg,#ff7759,#e53b4e 55%,#a81c49);
+--good:#3ddc84;--goodbg:rgba(61,220,132,.13);--bad:#ff6b6b;--badbg:rgba(255,107,107,.13);--sel:#5aa9ff;--selbg:rgba(90,169,255,.14)}
+*{box-sizing:border-box;min-width:0}
+html{background:var(--bg)}
+body{margin:0;min-height:100vh;color:var(--ink);font:17px/1.5 Roboto,system-ui,-apple-system,"Segoe UI",sans-serif;overflow-x:clip;-webkit-tap-highlight-color:transparent;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;padding:0}
+button:disabled{cursor:default}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--sel);outline-offset:3px}
+.scene{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none;background:radial-gradient(120% 70% at 50% 0%,#1b222b 0%,#0d1014 60%)}
+.scene i{position:absolute;border-radius:50%;filter:blur(90px)}
+.scene i:nth-child(1){width:70vmax;height:28vmax;left:-15vmax;top:30%;background:#c99a1e;opacity:.22;transform:rotate(-14deg)}
+.scene i:nth-child(2){width:40vmax;height:40vmax;right:-14vmax;top:-12vmax;background:#3c4a5c;opacity:.5}
+.scene i:nth-child(3){width:34vmax;height:20vmax;right:-6vmax;bottom:6%;background:#8a2a3a;opacity:.18}
+.glass{background:var(--glass);border:1px solid var(--line);-webkit-backdrop-filter:blur(26px) saturate(140%);backdrop-filter:blur(26px) saturate(140%);box-shadow:inset 0 1px 0 var(--hi),0 20px 40px rgba(0,0,0,.25);border-radius:28px}
+.wrap{max-width:720px;margin:0 auto;padding:max(26px,env(safe-area-inset-top)) max(18px,env(safe-area-inset-right)) 140px max(18px,env(safe-area-inset-left))}
+h1,h2,h3{margin:0;line-height:1.15;text-wrap:balance}
+.tile{flex:none;display:grid;place-items:center;border-radius:12px;width:40px;height:40px;color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.28),0 4px 12px rgba(0,0,0,.25)}
+.tile svg{width:22px;height:22px}
+.tile.lg{width:64px;height:64px;border-radius:18px}.tile.lg svg{width:40px;height:40px}
+.t-amber{background:linear-gradient(160deg,#ffc04d,#f07a1a)}.t-red{background:linear-gradient(160deg,#ff6b6b,#d02f4b)}
+.t-blue{background:linear-gradient(160deg,#5cb2ff,#2a6cf0)}.t-green{background:linear-gradient(160deg,#4fe08f,#17a356)}
+.t-purple{background:linear-gradient(160deg,#9b8cff,#5b45f0)}.t-pink{background:linear-gradient(160deg,#ff8ad8,#c43ad6)}
+.t-grey{background:linear-gradient(160deg,#8b93a0,#545b66)}
+.ph{display:flex;align-items:center;gap:16px;margin:4px 2px 24px}
+.ph h1{font-size:clamp(30px,7vw,38px);font-weight:700;letter-spacing:-.01em}
+.ph p{margin:3px 0 0;color:var(--mute);font-size:16px}
+.sec{padding:22px 20px;margin-bottom:16px}
+.sh{display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.sh h2{font-size:21px;font-weight:700;flex:1}
+.facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.fact{padding:14px 16px;border-radius:20px;background:rgba(0,0,0,.18);border:1px solid var(--line)}
+.fact span{display:block;color:var(--mute);font-size:14px}
+.fact b{font-size:20px;font-weight:700}
+.note{color:var(--mute);font-size:15px;margin:14px 2px 0}
+.modes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.mode{display:flex;gap:12px;align-items:flex-start;text-align:left;padding:16px;border-radius:22px;background:rgba(0,0,0,.18);border:1px solid var(--line);min-height:44px}
+.mode b{display:block;font-size:17px;color:var(--ink)}
+.mode span{color:var(--mute);font-size:14px;line-height:1.35}
+.mode .tile{width:36px;height:36px;border-radius:11px}.mode .tile svg{width:20px;height:20px}
+.mode[aria-pressed=true]{background:var(--soft2);border-color:rgba(255,255,255,.32);box-shadow:0 0 0 1px rgba(255,255,255,.12)}
+.list{display:grid}
+.row{display:flex;align-items:center;gap:16px;padding:14px 2px;text-align:left;border-top:1px solid var(--line);min-height:64px}
+.row:first-child{border-top:0;padding-top:2px}.row:last-child{padding-bottom:2px}
+.row .tile{width:52px;height:52px;border-radius:15px}.row .tile svg{width:28px;height:28px}
+.row .tx{flex:1}
+.row b{display:block;font-size:19px}
+.row span{color:var(--mute);font-size:15px}
+.row .ok{color:var(--good)}
+.chev{color:var(--dim);flex:none}
+.foot{display:flex;align-items:center;gap:14px;padding:18px 20px}
+.foot .tx{flex:1;font-size:15px;color:var(--mute)}
+.foot .tx b{display:block;color:var(--ink);font-size:16px;font-weight:500}
+.pillbtn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 20px;border-radius:99px;font-weight:500;font-size:16px;background:var(--soft);border:1px solid var(--line);text-decoration:none;white-space:nowrap}
+.pillbtn.act{background:var(--act);border-color:transparent;color:#fff;box-shadow:0 8px 22px rgba(229,59,78,.28),inset 0 1px 0 rgba(255,255,255,.25)}
+.pillbtn:disabled{opacity:.4}
+/* quiz */
+.qh{display:flex;align-items:center;gap:12px;margin:0 0 16px}
+.back{width:48px;height:48px;border-radius:16px;display:grid;place-items:center;flex:none}
+.qh .tx{flex:1}
+.qh b{display:block;font-size:20px}
+.qh span{color:var(--mute);font-size:15px}
+.timer{font-weight:700;font-size:17px;font-variant-numeric:tabular-nums;padding:10px 16px;border-radius:99px;white-space:nowrap}
+.timer.low{color:var(--bad);border-color:rgba(255,107,107,.5)}
+.prog{height:6px;border-radius:9px;background:var(--soft);overflow:hidden;margin:0 2px 18px}
+.prog i{display:block;height:100%;border-radius:9px;background:var(--act);transition:width .25s}
+.qcard{padding:22px 18px 18px}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.tag{font-size:14px;font-weight:500;padding:5px 12px;border-radius:99px;background:var(--soft);border:1px solid var(--line);color:var(--mute)}
+.tag.must{color:#ffd7a0;background:rgba(240,122,26,.16);border-color:rgba(255,192,77,.35)}
+.qtext{font-size:clamp(20px,5vw,24px);font-weight:500;line-height:1.35;margin:0 2px 20px}
+.opts{display:grid;gap:10px}
+.opt{display:flex;gap:14px;align-items:center;text-align:left;padding:14px 16px;border-radius:20px;background:rgba(0,0,0,.2);border:1px solid var(--line);min-height:58px;transition:background .15s,border-color .15s}
+.opt .k{flex:none;width:34px;height:34px;border-radius:11px;display:grid;place-items:center;font-weight:700;font-size:15px;background:var(--soft2)}
+.opt.sel{border-color:var(--sel);background:var(--selbg)}.opt.sel .k{background:var(--sel);color:#0b1a2e}
+.opt.right{border-color:var(--good);background:var(--goodbg)}.opt.right .k{background:var(--good);color:#06240f}
+.opt.wrong{border-color:var(--bad);background:var(--badbg)}.opt.wrong .k{background:var(--bad);color:#2b0606}
+.opt.miss{border-color:var(--good);border-style:dashed}.opt.miss .k{color:var(--good)}
+.verdict{display:flex;gap:10px;align-items:center;margin-top:16px;padding:14px 16px;border-radius:18px;font-weight:500}
+.verdict svg{flex:none}
+.verdict.ok{background:var(--goodbg);color:var(--good)}.verdict.no{background:var(--badbg);color:var(--bad)}
+.jump{margin-top:16px;padding:18px}
+.jump summary{cursor:pointer;color:var(--mute);font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center;min-height:28px}
+.jump summary::-webkit-details-marker{display:none}
+.jump[open] summary svg{transform:rotate(90deg)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(44px,1fr));gap:8px;margin-top:14px}
+.n{height:44px;border-radius:14px;font-weight:500;font-size:15px;background:var(--soft);border:1px solid var(--line);color:var(--mute)}
+.n.ans{color:var(--ink);background:var(--soft2)}
+.n.ok{color:var(--good);background:var(--goodbg);border-color:rgba(61,220,132,.45)}
+.n.no{color:var(--bad);background:var(--badbg);border-color:rgba(255,107,107,.45)}
+.n.cur{border-color:#fff;color:#fff}
+.n.must{box-shadow:inset 0 -3px 0 #f0a33a}
+.legend{display:flex;flex-wrap:wrap;gap:14px;margin-top:12px;font-size:13.5px;color:var(--dim)}
+.legend i{display:inline-block;width:14px;height:4px;border-radius:2px;background:#f0a33a;vertical-align:middle;margin-right:6px}
+.bar{position:fixed;left:50%;transform:translateX(-50%);bottom:max(14px,env(safe-area-inset-bottom));width:min(720px,calc(100% - 28px));padding:10px;border-radius:99px;z-index:5;display:flex;gap:10px}
+.bar .pillbtn{min-height:54px;font-size:17px}
+.bar .act{flex:1}
+/* results */
+.score{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.ring{width:132px;height:132px;position:relative;flex:none}
+.ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.ring .v{position:absolute;inset:0;display:grid;place-content:center;text-align:center}
+.ring .v b{font-size:34px;line-height:1}
+.ring .v span{color:var(--mute);font-size:14px}
+.sres{flex:1;min-width:200px}
+.status{display:inline-flex;align-items:center;gap:8px;font-size:22px;font-weight:700;margin-bottom:6px}
+.status.ok{color:var(--good)}.status.no{color:var(--bad)}
+.sres p{margin:0;color:var(--mute);font-size:16px}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:20px 0 16px}
+.acts{display:flex;flex-wrap:wrap;gap:10px}.acts .pillbtn{flex:1 1 180px}
+.seg{display:flex;gap:8px;margin:0 0 14px}
+.seg button{min-height:44px;padding:0 18px;border-radius:99px;font-size:15px;font-weight:500;background:var(--soft);border:1px solid var(--line);color:var(--mute)}
+.seg button[aria-pressed=true]{background:var(--soft2);color:var(--ink);border-color:rgba(255,255,255,.3)}
+.ri{padding:18px;border-radius:22px;background:rgba(0,0,0,.18);border:1px solid var(--line);margin-bottom:10px}
+.ri h3{font-size:17px;font-weight:500;line-height:1.4;margin:10px 0 12px}
+.ri ul{margin:0;padding:0;list-style:none;display:grid;gap:6px}
+.ri li{display:flex;gap:10px;font-size:15.5px;padding:9px 12px;border-radius:12px}
+.ri li b{flex:none;width:18px}
+.ri li.right{background:var(--goodbg);color:var(--good)}.ri li.wrong{background:var(--badbg);color:var(--bad)}
+.ri li.miss{box-shadow:inset 0 0 0 1px rgba(61,220,132,.5);color:var(--good)}
+.ri .who{opacity:.8;font-size:13.5px}
+.empty{color:var(--mute);text-align:center;padding:14px}
+/* modal */
+.modal{position:fixed;inset:0;z-index:20;display:grid;place-items:center;padding:20px;background:rgba(5,7,10,.55);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+.modal[hidden]{display:none}
+.modal .box{max-width:420px;width:100%;padding:24px;background:linear-gradient(180deg,rgba(40,46,54,.92),rgba(26,30,36,.94))}
+.modal h2{font-size:22px;margin-bottom:8px}
+.modal p{color:var(--mute);margin:0 0 20px}
+.modal .r{display:flex;gap:10px}.modal .r>*{flex:1}
+@media(max-width:560px){.modes{grid-template-columns:1fr}.foot{flex-wrap:wrap}.foot .pillbtn{width:100%}.ring{width:112px;height:112px}.ring .v b{font-size:28px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="scene" aria-hidden="true"><i></i><i></i><i></i></div>
+<main class="wrap" id="app"></main>
+<div class="modal" id="modal" hidden><div class="box glass" role="dialog" aria-modal="true" aria-labelledby="mt"><h2 id="mt"></h2><p id="mp"></p><div class="r"><button class="pillbtn" id="mno">Cancel</button><button class="pillbtn act" id="myes">Submit</button></div></div></div>
+<script>
+{
+const DATA=[[{"q":"From the list below, select the 4 main safety checks you would make before loading or unloading a flatbed or curtainsider lorry.","o":["Ensure the lorry brakes applied or wheels are chocked","Have the daily walk round checks of the vehicle been completed?","Lorry bed condition, width, height, level and curtains out of the way","Ensure the driver is in a safe/designated area and what requirements there are for loading/unloading the lorry","Has the driver’s route been inspected to ensure the safest and most efficient route has been selected","A support stand is positioned on an unsupported semi-trailer","Has the driver’s licence been inspected to ensure they have the appropriate licence to drive the vehicle?","Confirm if the driver has taken the appropriate daily rest/break prior to loading/unloading"],"a":[0,2,3,5],"k":4,"c":false},{"q":"Lateral instability is the risk a lift truck will tip sideways. From the list below, select 4 actions that can greatly increase this risk when operating.","o":["Turning too fast","Harsh braking","Handling a live load","Negotiating an incline in the incorrect direction","Speeding","Operating across side-sloping ground","Turning with the mast/load raised","Turning on an incline","Travelling forwards with a raised load","Operating with the incorrect back tilt to stabilise the load"],"a":[0,2,5,6,7],"k":4,"c":false},{"q":"Name 2 reasons why the parking brake must be applied and transmission in neutral when using any hydraulic controls.","o":["To ensure the lift truck is stable during the operation of the controls","To ensure the operator can dismount safely if required","To allow the operator to focus on the stacking/de-stacking operation","Allow the operator to follow the safe setting off procedure after the use of the hydraulic controls"],"a":[0,2],"k":2,"c":false},{"q":"From the list below, select 4 precautions to be considered when travelling over wet or slippery surfaces.","o":["Adjust your travel speed to suit conditions","Turn off the lights to reduce the glare from the surface","Sound the horn twice to warn others before crossing the surface","Adjust braking to suit conditions","Apply level tilt to ensure the mast is in vertical position (if laden)","Remove the seat belt, so you can quickly exit the truck if needed","Pay attention to ground conditions and watch for changes","Refrain from sudden and aggressive steering"],"a":[0,3,6,7],"k":4,"c":false},{"q":"In relation to a truck’s capacity, select the 3 items of information that must be known prior to any lifting operation.","o":["Lifting capacity","Model of the lift truck","The weight of the battery","Load centre","The serial number of the lift truck","Stacking height"],"a":[0,3,5],"k":3,"c":false},{"q":"Who is responsible for checking that the lift truck is in good working order before use?","o":["The management","The maintenance department","The operator","The insurer"],"a":[2],"k":1,"c":true},{"q":"The truck’s maximum carrying capacity will be reduced when:","o":["The load centre is increased","The load centre is decreased","The load obscures your view","When travelling in reverse"],"a":[0],"k":1,"c":true},{"q":"Whose responsibility is it to ensure the safety of pedestrians while operating a lift truck?","o":["The lift truck operator","Management","The pedestrians themselves","The human resources department"],"a":[0],"k":1,"c":true},{"q":"From the list below, select the last thing the operator should do before moving off.","o":["Put their seat belt on","Engage drive","Look around","Sound the horn"],"a":[2],"k":1,"c":true},{"q":"Lift trucks are more likely to turn over sideways when they are:","o":["Loaded and driven slowly around a corner","Loaded and driven quickly in a straight line","Brought to a sudden stop with hard braking","Unladen and turning sharply"],"a":[3],"k":1,"c":true},{"q":"What position should a lift truck’s mast be in to comply with the manufacturer’s stated lifting capacity?","o":["Slightly tilted backwards with the truck on level ground","It doesn’t matter because the mast angle does not affect the rated capacity","Slightly tilted forwards with the truck on level ground","Vertical with the truck on level ground"],"a":[3],"k":1,"c":false},{"q":"What is meant by the term ‘load centre’ as it applies to lift trucks?","o":["The width that the forks should be set on the carriage plate","The length of the truck and the load","The measurement to the middle of the load","It is the measurement given forward from the front face of the fork arms to the centre of gravity of the load"],"a":[3],"k":1,"c":false},{"q":"Prior to operating a lift truck in the working environment, the operator must have ‘written authorisation’ issued by:","o":["The instructor who carried out the training","The employer","The lift truck supplier","The lift truck manufacturer"],"a":[1],"k":1,"c":false},{"q":"An Approved Code of Practice is:","o":["A requirement by law with which everyone must comply","Advice to duty holders on how to comply with legislation","A registration scheme for the licensing of lift truck operators","Written by a manufacturer on how to operate a lift truck"],"a":[1],"k":1,"c":false},{"q":"How must the forks be positioned when handling metal stillages?","o":["As wide as possible to prevent the load slipping sideways","Spaced to take an equal weight on each fork, as with pallets","Fairly narrow to allow for easy entry/withdrawal and to keep the weight on the forks","As close as possible"],"a":[0],"k":1,"c":false},{"q":"What is the recommended way to approach a stack to place or retrieve a load?","o":["Drive slowly forward, raise the forks to the required height, stop, apply the parking brake","Stop not more than 150mm from the stack, apply the parking brake, select neutral, adjust tilt and raise the forks","Stop at least a metre from the stack, raise the forks to the required height, drive slowly forward","Stop 150mm from the stack, apply the park brake and select neutral, and with full back tilt enter the pallet"],"a":[1],"k":1,"c":false},{"q":"In normal circumstances, if the load on the forks obscures your view, you should:","o":["Dismount, check that the way is clear, then drive slowly forward sounding the horn","Travel in reverse, looking in the direction of travel","Ask your supervisor to guide you with hand signals","Conduct an all-round check and proceed forwards very slowly with your head just outside the safety cage"],"a":[1],"k":1,"c":false},{"q":"When parking a lift truck, how should the forks be positioned?","o":["The tips not more than 100-150mm high with the heels touching the ground","The heels not more than 100-150mm high with the tips touching the ground","The heels as low as possible with the tips touching the ground","The heels touching the ground with the tips within 100mm of the ground"],"a":[2],"k":1,"c":false},{"q":"How much back tilt is required when transporting a palletised load?","o":["Sufficient back tilt to cater for the type of load and ground conditions","Full tilt to keep the load against the vertical face of the forks","Back tilt just off the vertical to prevent the load from slipping forward","The forks should be level to deposit a load"],"a":[0],"k":1,"c":false},{"q":"When driving a laden truck up an incline the forks should be:","o":["Trailing","Leading","Tilted forward","Reach carriage extended"],"a":[1],"k":1,"c":false},{"q":"While operating a lift truck, what would you do if you saw some rubbish/dunnage lying in a gangway or warehouse location?","o":["Inform the supervisor","Park the truck in a safe place and remove the obstruction","Inform the other truck operators and get it moved at break time","Ignore it as the next shift have cleaners who will move it"],"a":[1],"k":1,"c":false},{"q":"When following another lift truck, how many truck lengths’ clearance is it recommended to leave?","o":["One length","Two lengths","Three lengths","Four lengths"],"a":[2],"k":1,"c":false},{"q":"The safe use of the hydraulic controls requires the following:","o":["Parking brake applied","Parking brake applied and transmission in neutral","Clutch disengaged and foot brake applied","A fully-charged battery"],"a":[1],"k":1,"c":false},{"q":"When the load centre is increased:","o":["The load carrying capacity is not affected","The load carrying capacity is increased","The load carrying capacity is not affected if it is a live load","The load carrying capacity is reduced"],"a":[3],"k":1,"c":false},{"q":"What is the meaning of ‘free lift’ in connection with lift trucks?","o":["The distance the forks can be raised before the mast begins to extend","The tolerance allowed for fork clearance whilst entering the pallet","Passengers may be carried on the truck to assist the operator","The hydraulics do not use power when being lowered"],"a":[0],"k":1,"c":false}],[{"q":"Select from the list below, identify the 4 reasons why it is important to carry loads up to the heel of the forks.","o":["To keep the load centre as far back as possible","To allow the barcode to be scanned, in the event this is required to be conducted","To maintain truck stability","To ensure the operator can see the leading edge of the load","Maintain load stability against the fork arms and carriage/load guard","Keep the truck and its load as short as possible for confined spaces","To assist when loading / unloading from an industrial racking system","To prevent damage to the fork arms"],"a":[0,2,4,5],"k":4,"c":false},{"q":"From the list below, select 4 locations which should be avoided when parking.","o":["Blind corners","Level ground","Near firefighting equipment","On inclines","Outside areas","In front of fire exits","Blocking aisles","Next to pedestrian walkways"],"a":[0,3,5,6],"k":4,"c":false},{"q":"From the list below, select 2 effects that poor ground conditions can have on a lift truck.","o":["Increases the risk of lift truck instability","Loss of adhesion/traction","Reduces the lift truck capacity","Increases the load centre of the lift truck"],"a":[0,1],"k":2,"c":false},{"q":"From the list below, identify 4 actions that will greatly increase the risk of the lift truck tipping forwards or backwards.","o":["Exceeding the rated capacity and rated load centre of the lift truck","Travelling with the mast raised","Fails to conduct a thorough pre-use inspection of the lift truck","Too much forward tilt at height","Secured and stable load","Travelling with full back tilt applied","Incorrect direction on a slope when laden","Reducing the load centre"],"a":[0,1,3,6],"k":4,"c":false},{"q":"From the list below, select 4 things you must check before picking up a load.","o":["Its weight","Its load centre","Must be in the goods in / goods out area when checking the load","Its condition and security","Supplier","Delivery address location label","What the load consists of","Product expiry date"],"a":[0,1,3,6],"k":4,"c":false},{"q":"Who is responsible for checking that the lift truck is in good working order before use?","o":["The management","The maintenance department","The operator","The insurer"],"a":[2],"k":1,"c":true},{"q":"The truck’s maximum carrying capacity will be reduced when:","o":["The load centre is increased","The load centre is decreased","The load obscures your view","When travelling in reverse"],"a":[0],"k":1,"c":true},{"q":"Whose responsibility is it to ensure the safety of pedestrians while operating a lift truck?","o":["The lift truck operator","Management","The pedestrians themselves","The human resources department"],"a":[0],"k":1,"c":true},{"q":"From the list below, select the last thing the operator should do before moving off.","o":["Put their seat belt on","Engage drive","Look around","Sound the horn"],"a":[2],"k":1,"c":true},{"q":"Lift trucks are more likely to turn over sideways when they are:","o":["Loaded and driven slowly around a corner","Loaded and driven quickly in a straight line","Brought to a sudden stop with hard braking","Unladen and turning sharply"],"a":[3],"k":1,"c":true},{"q":"The lift truck’s ‘rated capacity’ applies with the mast in the:","o":["Vertical position","Tilted back position","Tilted forward position","Reach carriage extended position and tilted forward"],"a":[0],"k":1,"c":false},{"q":"When driving a laden truck up an incline the forks should be:","o":["Trailing","Leading","Tilted forward","Reach carriage extended"],"a":[1],"k":1,"c":false},{"q":"When sounding the lift truck’s horn at a blind corner you should:","o":["Make several short sharp blasts","Give one long blast to attract attention","Give one short toot to save discharging the battery","Give several long blasts"],"a":[0],"k":1,"c":false},{"q":"Health and Safety legislation places responsibility for safety at work on:","o":["The employers","The employees","Everyone on the premises","Lift truck operators only"],"a":[2],"k":1,"c":false},{"q":"Undercutting is used when:","o":["The operator cannot see the pallet slots so places the forks under the pallet","The forks are longer than the pallet and the pallet is adjacent to a wall or another pallet, or the pallet cannot be heeled up immediately","The forks are shorter than the pallet and it has to be carried carefully","When the load is at the maximum rated capacity of the lift truck"],"a":[1],"k":1,"c":false},{"q":"In normal circumstances, if the load on the forks obscures your view, you should:","o":["Dismount, check that the way is clear, then drive slowly forward sounding the horn","Travel in reverse, looking in the direction of travel","Ask your supervisor to guide you with hand signals","Conduct an all-round check and proceed forwards very slowly with your head just outside the safety cage"],"a":[1],"k":1,"c":false},{"q":"When parking a lift truck, how should the forks be positioned?","o":["The tips not more than 100-150mm high with the heels touching the ground","The heels not more than 100-150mm high with the tips touching the ground","The heels as low as possible with the tips touching the ground","The heels touching the ground with the tips within 100mm of the ground"],"a":[2],"k":1,"c":false},{"q":"Before starting to load a rigid flatbed lorry or trailer from ground level, the lift truck operator must check:","o":["That the lorry driver has checked the load","That the lorry’s tyre pressures are correct for the weight of the load","The destination of the lorry","That the lorry driver is aware that loading is about to take place, the lorry engine is turned off and key is removed, the lorry parking brake(s) are applied and the lorry wheels are chocked (if necessary)"],"a":[3],"k":1,"c":false},{"q":"When an unladen counterbalance truck is being driven on an incline, the forks/attachment should face downhill. This is to improve:","o":["Stability, traction and adhesion","Visibility and steering","Speed and to reduce tyre wear","Time-keeping"],"a":[0],"k":1,"c":false},{"q":"When tilting a load forward at height, why is there an increased risk of the truck tipping forward?","o":["The lateral forces placed over the rear axle will increase","The load centre will increase","The combined centre of gravity moves forward","A small amount of tilt at height does not affect stability"],"a":[2],"k":1,"c":false},{"q":"Why do you stop the truck no more than 150mm from the stack before raising the forks?","o":["To assist with accuracy and discourage people from walking between the forks and the stack","To save too many movements of the truck when manoeuvring","To save using the parking brake too many times","To allow pedestrians to pass through the gap at the rear of the truck"],"a":[0],"k":1,"c":false},{"q":"The brakes on the truck you are operating seem to be faulty. What are you going to do?","o":["Inform the supervisor","Stop immediately and seek assistance","Drive more slowly and get the fault checked at the next break time","As long as the parking brake works it will be OK to finish the job and then report the fault"],"a":[1],"k":1,"c":false},{"q":"As a general rule, how should the forks be positioned on the carriage to take a loaded wooden pallet?","o":["As wide as possible to prevent the load tipping off","Spread so as to take an equal weight on each fork","Fairly close together to allow easy entry of the forks","As close to the centre block as possible"],"a":[1],"k":1,"c":false},{"q":"The safe use of the hydraulic controls requires the following:","o":["Parking brake applied","Parking brake applied and transmission in neutral","Clutch disengaged and foot brake applied","A fully-charged battery"],"a":[1],"k":1,"c":false},{"q":"When preparing to move off, the safest procedure is as follows:","o":["Transmission engaged – look over both shoulders – park brake off – move off","Look over both shoulders – transmission engaged – park brake off – move off","Park brake off – transmission engaged – look over both shoulders – move off","Park brake off – look over both shoulders – engage transmission and move off"],"a":[0],"k":1,"c":false}],[{"q":"From the list below, select 4 surfaces a lift truck operator should avoid.","o":["Uneven surfaces","Tarmac","Slippery surfaces","Very smooth","Loose surface","Soft surfaces","Concrete","Designated traffic route"],"a":[0,2,4,5],"k":4,"c":false},{"q":"In relation to a truck’s capacity, select the 3 items of information that must be known prior to any lifting operation.","o":["Lifting capacity","Model of the lift truck","The weight of the battery","Load centre","The serial number of the lift truck","Stacking height"],"a":[0,3,5],"k":3,"c":false},{"q":"From the list below, select 2 reasons why it is advisable to stop just a short distance from the stack.","o":["Assist with accuracy","To aid in the increase of pace to complete the task","To prevent the reduction of battery life / fuel","Discourage pedestrians walking between the lift truck and the stack"],"a":[0,3],"k":2,"c":false},{"q":"From the list below, select 4 precautions you should take as you approach and negotiate blind corners.","o":["Decrease speed","Ensure the operator has applied the correct PPE","Sound the horn","Drive wide to increase visibility","Position your lift truck close to the corner to be negotiated","Operate with caution and be prepared to stop","Make sure your lights are activated"],"a":[0,2,3,5],"k":4,"c":false},{"q":"From the list below, select the 2 safety precautions to be followed when handling self-contained portable stacking pallets:","o":["Spread the forks as wide as possible","The operator must never operate the lift truck in a forwards direction when transporting the loads","Ensure a qualified banksman is available to assist before transporting the loads","Apply full back tilt when transporting the loads to improve stability"],"a":[0,3],"k":2,"c":false},{"q":"Who is responsible for checking that the lift truck is in good working order before use?","o":["The management","The maintenance department","The operator","The insurer"],"a":[2],"k":1,"c":true},{"q":"The truck’s maximum carrying capacity will be reduced when:","o":["The load centre is increased","The load centre is decreased","The load obscures your view","When travelling in reverse"],"a":[0],"k":1,"c":true},{"q":"Whose responsibility is it to ensure the safety of pedestrians while operating a lift truck?","o":["The lift truck operator","Management","The pedestrians themselves","The human resources department"],"a":[0],"k":1,"c":true},{"q":"From the list below, select the last thing the operator should do before moving off.","o":["Put their seat belt on","Engage drive","Look around","Sound the horn"],"a":[2],"k":1,"c":true},{"q":"Lift trucks are more likely to turn over sideways when they are:","o":["Loaded and driven slowly around a corner","Loaded and driven quickly in a straight line","Brought to a sudden stop with hard braking","Unladen and turning sharply"],"a":[3],"k":1,"c":true},{"q":"What is the difference between net weight and gross weight?","o":["Net weight = the product only: gross weight = the weight of the product, pallet and packaging","Net weight = the weight of the load: gross weight = the weight of the load and the pallet","They are both the same and refer to the weight of the truck","Gross weight only applies to live loads"],"a":[0],"k":1,"c":false},{"q":"Enforcement of the Health and Safety at Work etc. Act 1974 is the responsibility of:","o":["The Health and Safety Commission (HSC)","The European Commission’s United Inspectors (ECU)","The Health and Safety Executive and local authorities","The police"],"a":[2],"k":1,"c":false},{"q":"When sounding the lift truck’s horn at a blind corner you should:","o":["Make several short sharp blasts","Give one long blast to attract attention","Give one short toot to save discharging the battery","Give several long blasts"],"a":[0],"k":1,"c":false},{"q":"Undercutting is used when:","o":["The operator cannot see the pallet slots so places the forks under the pallet","The forks are longer than the pallet and the pallet is adjacent to a wall or another pallet, or the pallet cannot be heeled up immediately","The forks are shorter than the pallet and it has to be carried carefully","When the load is at the maximum rated capacity of the lift truck"],"a":[1],"k":1,"c":false},{"q":"How must the forks be positioned when handling metal stillages?","o":["As wide as possible to prevent the load slipping sideways","Spaced to take an equal weight on each fork, as with pallets","Fairly narrow to allow for easy entry/withdrawal and to keep the weight on the forks","As close as possible"],"a":[0],"k":1,"c":false},{"q":"In normal circumstances, if the load on the forks obscures your view, you should:","o":["Dismount, check that the way is clear, then drive slowly forward sounding the horn","Travel in reverse, looking in the direction of travel","Ask your supervisor to guide you with hand signals","Conduct an all-round check and proceed forwards very slowly with your head just outside the safety cage"],"a":[1],"k":1,"c":false},{"q":"When parking a lift truck, how should the forks be positioned?","o":["The tips not more than 100-150mm high with the heels touching the ground","The heels not more than 100-150mm high with the tips touching the ground","The heels as low as possible with the tips touching the ground","The heels touching the ground with the tips within 100mm of the ground"],"a":[2],"k":1,"c":false},{"q":"Before starting to load a rigid flatbed lorry or trailer from ground level, the lift truck operator must check:","o":["That the lorry driver has checked the load","That the lorry’s tyre pressures are correct for the weight of the load","The destination of the lorry","That the lorry driver is aware that loading is about to take place, the lorry engine is turned off and key is removed, the lorry parking brake(s) are applied and the lorry wheels are chocked (if necessary)"],"a":[3],"k":1,"c":false},{"q":"A lift truck should always be driven across railway lines, traffic calming speed bumps, drainage gullies, etc.:","o":["As quickly as possible","With forks trailing","Slowly and, if possible, diagonally","Straight onto the obstacle"],"a":[2],"k":1,"c":false},{"q":"In winter months, loads stacked outside may be covered in ice and snow, the effect of this will:","o":["Increase the carrying capacity of the truck","Make no change to the truck or weight of the load","Increase the weight of the load","Increase the friction between the pallet and the forks"],"a":[2],"k":1,"c":false},{"q":"When the load centre is increased:","o":["The load carrying capacity is not affected","The load carrying capacity is increased","The load carrying capacity is not affected if it is a live load","The load carrying capacity is reduced"],"a":[3],"k":1,"c":false},{"q":"The brakes on the truck you are operating seem to be faulty. What are you going to do?","o":["Inform the supervisor","Stop immediately and seek assistance","Drive more slowly and get the fault checked at the next break time","As long as the parking brake works it will be OK to finish the job and then report the fault"],"a":[1],"k":1,"c":false},{"q":"The safe use of the hydraulic controls requires the following:","o":["Parking brake applied","Parking brake applied and transmission in neutral","Clutch disengaged and foot brake applied","A fully-charged battery"],"a":[1],"k":1,"c":false},{"q":"When preparing to move off, the safest procedure is as follows:","o":["Transmission engaged – look over both shoulders – park brake off – move off","Look over both shoulders – transmission engaged – park brake off – move off","Park brake off – transmission engaged – look over both shoulders – move off","Park brake off – look over both shoulders – engage transmission and move off"],"a":[0],"k":1,"c":false},{"q":"When transporting a load on level ground, the correct position of the forks is:","o":["With the forks as near to the ground as possible and parallel to the ground","With the forks 100mm – 150mm off the ground and tilted back sufficiently to stabilise the load","With the forks 100mm – 150mm off the ground and fully tilted back","With the forks 100mm – 150mm from the ground and tilted forwards"],"a":[1],"k":1,"c":false}]];
+const PASS=20, MINS=30, PORTFOLIO='https://probler.uk';
+const I={
+ lift:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.6 10.6V5.2a.9.9 0 0 1 .9-.9h4.4a.9.9 0 0 1 .83.55l2.45 5.75h-1.9L9.4 6.1H6.4v4.5z"/><rect x="2.4" y="10.4" width="11.2" height="5.4" rx="1.3"/><rect x="14.6" y="3.2" width="1.9" height="14.6" rx=".6"/><rect x="14.6" y="16.2" width="7.4" height="1.6" rx=".6"/><circle cx="5.6" cy="17.4" r="2.5" stroke="rgba(0,0,0,.28)" stroke-width="1"/><circle cx="11.6" cy="17.4" r="2.5" stroke="rgba(0,0,0,.28)" stroke-width="1"/></svg>',
+ info:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.01"/></svg>',
+ book:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linejoin="round"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H11v15H5.5A1.5 1.5 0 0 1 4 17.5zM20 5.5A1.5 1.5 0 0 0 18.5 4H13v15h5.5a1.5 1.5 0 0 0 1.5-1.5z"/></svg>',
+ timer:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="13.5" r="7.5"/><path d="M12 9.5v4l2.5 1.5M9.5 2.5h5"/></svg>',
+ doc:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M6.5 3h7.5l4.5 4.5v12a1.5 1.5 0 0 1-1.5 1.5h-10.5A1.5 1.5 0 0 1 5 19.5v-15A1.5 1.5 0 0 1 6.5 3z"/><path d="M14 3v4.5h4.5"/></svg>',
+ list:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M9 6h11M9 12h11M9 18h11M4.5 6h.01M4.5 12h.01M4.5 18h.01"/></svg>',
+ chart:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 20V11M12 20V4M19 20v-6"/></svg>',
+ user:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"><circle cx="12" cy="8.5" r="4"/><path d="M4.5 20.5c1-4 4-6 7.5-6s6.5 2 7.5 6"/></svg>',
+ chev:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>',
+ left:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>',
+ ok:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.7 2.7L16 9.8"/></svg>',
+ no:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg>',
+ ext:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>'
+};
+const PT=['t-blue','t-green','t-purple'];
+const L='ABCDEFGHIJ';
+const app=document.getElementById('app');
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const store={get(k,d){try{const v=localStorage.getItem('ftl_'+k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem('ftl_'+k,JSON.stringify(v))}catch(e){}}};
+let S={mode:store.get('mode','practice'),paper:null};
+const hp=/^#paper-([123])$/.exec(location.hash);if(hp)S.paper=+hp[1]-1;
+const isRight=(q,sel)=>!!sel&&sel.length===q.k&&sel.every(i=>q.a.includes(i));
+const fmt=s=>`${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`;
+const practice=()=>S.mode==='practice'||S.retry;
+let tick=null,rf='all';
+const credit=()=>`<section class="foot glass"><span class="tile t-grey">${I.user}</span><div class="tx"><b>Made by Mohamed Mahjoub</b>For class revision. Not an official test.</div><a class="pillbtn" href="${PORTFOLIO}" target="_blank" rel="noopener">View portfolio ${I.ext}</a></section>`;
+
+function home(){
+  clearInterval(tick);S.idx=null;S.done=false;
+  history.replaceState(null,'',location.pathname);
+  const best=store.get('best',{});
+  app.innerHTML=`
+  <header class="ph"><span class="tile lg t-amber">${I.lift}</span><div><h1>Forklift Theory</h1><p>Counterbalance LTG1 · B1/B4 practice papers</p></div></header>
+  <section class="sec glass">
+    <div class="sh"><span class="tile t-red">${I.info}</span><h2>About the test</h2></div>
+    <div class="facts"><div class="fact"><span>Questions</span><b>25</b></div><div class="fact"><span>Time allowed</span><b>30 minutes</b></div><div class="fact"><span>Pass mark</span><b>80% (20/25)</b></div><div class="fact"><span>Must be correct</span><b>Q6 to Q10</b></div></div>
+    <p class="note">Questions 1 to 5 ask you to pick more than one answer. The three papers below match the real ones word for word, in the same order.</p>
+  </section>
+  <section class="sec glass">
+    <div class="sh"><span class="tile t-amber">${I.timer}</span><h2>Choose a mode</h2></div>
+    <div class="modes" role="group" aria-label="Mode">
+      <button class="mode" data-mode="practice" aria-pressed="${S.mode==='practice'}"><span class="tile t-green">${I.book}</span><span><b>Practice</b><span>Check each answer as you go</span></span></button>
+      <button class="mode" data-mode="exam" aria-pressed="${S.mode==='exam'}"><span class="tile t-red">${I.timer}</span><span><b>Exam</b><span>30 minute timer, marked at the end</span></span></button>
+    </div>
+  </section>
+  <section class="sec glass">
+    <div class="sh"><span class="tile t-blue">${I.list}</span><h2>Choose a paper</h2></div>
+    <div class="list">${DATA.map((_,i)=>{const b=best[i];return `<button class="row" data-p="${i}"><span class="tile ${PT[i]}">${I.doc}</span><span class="tx"><b>Paper ${i+1}</b><span class="${b&&b.pass?'ok':''}">${b?`Best score ${b.s}/25${b.pass?' · Passed':''}`:'Not attempted'}</span></span><span class="chev">${I.chev}</span></button>`}).join('')}</div>
+  </section>
+  ${credit()}`;
+  app.querySelectorAll('[data-mode]').forEach(b=>b.onclick=()=>{S.mode=b.dataset.mode;store.set('mode',S.mode);app.querySelectorAll('[data-mode]').forEach(x=>x.setAttribute('aria-pressed',x===b))});
+  app.querySelectorAll('[data-p]').forEach(b=>b.onclick=()=>start(+b.dataset.p));
+  window.scrollTo(0,0);
+}
+
+function start(p,only){
+  S={...S,paper:p,idx:only||DATA[p].map((_,i)=>i),pos:0,sel:{},checked:{},done:false,saved:false,left:MINS*60,retry:!!only};
+  history.replaceState(null,'','#paper-'+(p+1));
+  clearInterval(tick);
+  if(!practice())tick=setInterval(()=>{S.left--;const t=document.getElementById('tm');if(t){t.textContent=fmt(S.left);t.classList.toggle('low',S.left<=300)}if(S.left<=0){clearInterval(tick);finish()}},1000);
+  quiz();window.scrollTo(0,0);
+}
+
+function quiz(){
+  const P=DATA[S.paper],qi=S.idx[S.pos],q=P[qi],sel=S.sel[qi]||[],chk=practice()&&S.checked[qi];
+  const n=S.idx.length,answered=S.idx.filter(j=>(S.sel[j]||[]).length).length,last=S.pos===n-1;
+  const opts=q.o.map((t,i)=>{let c='opt';const on=sel.includes(i);if(chk){if(q.a.includes(i))c+=on?' right':(q.k<q.a.length?'':' miss');else if(on)c+=' wrong'}else if(on)c+=' sel';return `<button class="${c}" data-o="${i}" ${chk?'disabled':''} aria-pressed="${on}"><span class="k">${L[i]}</span><span>${esc(t)}</span></button>`}).join('');
+  const grid=S.idx.map((j,i)=>{const Q=P[j];let c='n';if((S.sel[j]||[]).length)c+=' ans';if(practice()&&S.checked[j])c+=isRight(Q,S.sel[j])?' ok':' no';if(Q.c)c+=' must';if(i===S.pos)c+=' cur';return `<button class="${c}" data-go="${i}" aria-label="Question ${j+1}">${j+1}</button>`}).join('');
+  const ok=chk&&isRight(q,sel);
+  let main;
+  if(practice()&&!chk)main=`<button class="pillbtn act" id="chk" ${sel.length===q.k?'':'disabled'}>${q.k>1&&sel.length<q.k?`Select ${q.k-sel.length} more`:'Check answer'}</button>`;
+  else main=`<button class="pillbtn act" id="nx">${last?(practice()?'See results':'Finish and mark'):'Next question'}</button>`;
+  const many=q.a.length>1;
+  app.innerHTML=`
+  <header class="qh"><button class="back glass" id="ex" aria-label="Back to papers">${I.left}</button>
+    <div class="tx"><b>Paper ${S.paper+1}${S.retry?' · Review mistakes':''}</b><span>Question ${S.pos+1} of ${n} · ${answered} answered</span></div>
+    ${!practice()?`<span class="timer glass ${S.left<=300?'low':''}" id="tm" aria-label="Time left">${fmt(S.left)}</span>`:''}</header>
+  <div class="prog" aria-hidden="true"><i style="width:${(S.pos+1)/n*100}%"></i></div>
+  <article class="qcard glass">
+    <div class="tags"><span class="tag">Question ${qi+1}</span>${q.c?'<span class="tag must">Must be correct to pass</span>':''}${q.k>1?`<span class="tag">Select ${q.k} answers</span>`:''}</div>
+    <h2 class="qtext">${esc(q.q)}</h2>
+    <div class="opts">${opts}</div>
+    ${chk?`<div class="verdict ${ok?'ok':'no'}">${ok?I.ok+'Correct':I.no+`Incorrect. The correct answer${many?'s are':' is'} ${q.a.map(i=>L[i]).join(', ')}${q.a.length>q.k?` (any ${q.k} of these)`:''}.`}</div>`:''}
+  </article>
+  <details class="jump glass" ${store.get('grid',false)?'open':''}><summary>Go to a question ${I.chev}</summary><div class="grid">${grid}</div><div class="legend"><span><i></i>Must be correct to pass</span></div></details>
+  <nav class="bar glass"><button class="pillbtn" id="pv" ${S.pos?'':'disabled'}>Back</button>${main}</nav>`;
+  app.querySelectorAll('[data-o]').forEach(b=>b.onclick=()=>pick(+b.dataset.o));
+  app.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>{S.pos=+b.dataset.go;quiz();window.scrollTo(0,0)});
+  app.querySelector('.jump').ontoggle=e=>store.set('grid',e.target.open);
+  document.getElementById('ex').onclick=()=>ask('Leave this paper?','Your answers for this attempt will not be saved.','Leave',home);
+  document.getElementById('pv').onclick=()=>{if(S.pos){S.pos--;quiz()}};
+  const c=document.getElementById('chk');if(c)c.onclick=check;
+  const x=document.getElementById('nx');if(x)x.onclick=next;
+}
+function pick(i){
+  const qi=S.idx[S.pos],q=DATA[S.paper][qi];let s=S.sel[qi]||[];
+  if(practice()&&S.checked[qi])return;
+  if(q.k===1)s=[i];else if(s.includes(i))s=s.filter(x=>x!==i);else if(s.length<q.k)s=[...s,i];else s=[...s.slice(1),i];
+  S.sel[qi]=s;quiz();
+}
+function check(){const qi=S.idx[S.pos],q=DATA[S.paper][qi];if((S.sel[qi]||[]).length!==q.k)return;S.checked[qi]=true;quiz()}
+function next(){
+  if(S.pos<S.idx.length-1){S.pos++;quiz();window.scrollTo(0,0);return}
+  const miss=S.idx.filter(j=>!(S.sel[j]||[]).length).length;
+  if(!practice()&&miss)ask(`${miss} question${miss>1?'s':''} unanswered`,'Unanswered questions are marked as incorrect. Submit anyway?','Submit',finish);
+  else if(practice()&&S.idx.some(j=>!S.checked[j]))ask('Finish now?','Questions you have not checked will be marked as incorrect.','Finish',finish);
+  else finish();
+}
+function ask(t,p,yes,fn){
+  const m=document.getElementById('modal');document.getElementById('mt').textContent=t;document.getElementById('mp').textContent=p;
+  const y=document.getElementById('myes');y.textContent=yes;m.hidden=false;y.focus();
+  const close=()=>{m.hidden=true};document.getElementById('mno').onclick=close;y.onclick=()=>{close();fn()};m.onclick=e=>{if(e.target===m)close()};
+}
+
+function finish(){
+  clearInterval(tick);S.done=true;
+  const P=DATA[S.paper],res=S.idx.map(j=>({j,ok:isRight(P[j],S.sel[j])}));
+  const score=res.filter(r=>r.ok).length,n=S.idx.length;
+  const crit=res.filter(r=>P[r.j].c),critOk=crit.filter(r=>r.ok).length;
+  const full=!S.retry,pass=full&&score>=PASS&&critOk===crit.length;
+  if(full&&!S.saved){const b=store.get('best',{}),o=b[S.paper];b[S.paper]={s:Math.max(score,o?o.s:0),pass:pass||!!(o&&o.pass)};store.set('best',b);S.saved=true}
+  const wrong=res.filter(r=>!r.ok).map(r=>r.j),C=2*Math.PI*56;
+  let why;
+  if(!full)why=`${score} of ${n} answered correctly this time.`;
+  else if(pass)why='You scored at least 80% and answered all five must-pass questions correctly.';
+  else if(score>=PASS)why=`Your score is high enough, but ${crit.length-critOk} must-pass question${crit.length-critOk>1?'s were':' was'} incorrect. This would be a fail.`;
+  else why=`The pass mark is 20 out of 25${critOk<crit.length?', with all five must-pass questions correct':''}.`;
+  const used=!practice()?` · ${fmt(MINS*60-S.left)} used`:'';
+  app.innerHTML=`
+  <header class="qh"><button class="back glass" id="hb" aria-label="Back to papers">${I.left}</button><div class="tx"><b>Paper ${S.paper+1} results</b><span>${S.retry?'Review of mistakes':S.mode==='exam'?'Exam mode':'Practice mode'}${used}</span></div></header>
+  <section class="sec glass">
+    <div class="score">
+      <div class="ring"><svg viewBox="0 0 132 132"><defs><linearGradient id="rg"><stop offset="0" stop-color="#ff7759"/><stop offset="1" stop-color="#e53b4e"/></linearGradient></defs><circle cx="66" cy="66" r="56" fill="none" stroke="rgba(255,255,255,.09)" stroke-width="11"/><circle cx="66" cy="66" r="56" fill="none" stroke="${pass?'#3ddc84':'url(#rg)'}" stroke-width="11" stroke-linecap="round" stroke-dasharray="${C}" stroke-dashoffset="${C*(1-score/n)}"/></svg><div class="v"><b>${score}/${n}</b><span>${Math.round(score/n*100)}%</span></div></div>
+      <div class="sres">${full?`<div class="status ${pass?'ok':'no'}">${pass?I.ok+'Pass':I.no+'Not passed'}</div>`:''}<p>${why}</p></div>
+    </div>
+    <div class="stats"><div class="fact"><span>Correct</span><b>${score}</b></div><div class="fact"><span>Incorrect</span><b>${n-score}</b></div><div class="fact"><span>Q6 to Q10</span><b>${critOk}/${crit.length}</b></div></div>
+    <div class="acts">${wrong.length?`<button class="pillbtn act" id="rw">Retry ${wrong.length} incorrect</button>`:''}<button class="pillbtn" id="ag">Start paper again</button><button class="pillbtn" id="hm">All papers</button></div>
+  </section>
+  <section class="sec glass">
+    <div class="sh"><span class="tile t-purple">${I.chart}</span><h2>Your answers</h2></div>
+    <div class="seg" role="group"><button data-f="all" aria-pressed="${rf==='all'}">All</button><button data-f="wrong" aria-pressed="${rf==='wrong'}">Incorrect (${wrong.length})</button></div>
+    ${res.filter(r=>rf==='all'||!r.ok).map(({j,ok})=>{const q=P[j],s=S.sel[j]||[];return `<div class="ri"><div class="tags" style="margin:0"><span class="tag">Question ${j+1}</span>${q.c?'<span class="tag must">Must pass</span>':''}<span class="tag" style="color:var(--${ok?'good':'bad'})">${ok?'Correct':s.length?'Incorrect':'Not answered'}</span></div><h3>${esc(q.q)}</h3><ul>${q.o.map((t,i)=>{const on=s.includes(i),a=q.a.includes(i),c=a&&on?'right':on?'wrong':a?'miss':'';return c?`<li class="${c}"><b>${L[i]}</b><span>${esc(t)}${on?' <span class="who">(your answer)</span>':''}</span></li>`:''}).join('')}</ul></div>`}).join('')||'<p class="empty">No incorrect answers.</p>'}
+  </section>
+  ${credit()}`;
+  const p=S.paper,idx=S.idx,re=S.retry;
+  const rw=document.getElementById('rw');if(rw)rw.onclick=()=>{S.saved=false;start(p,wrong)};
+  document.getElementById('ag').onclick=()=>{S.saved=false;start(p,re?idx:null)};
+  document.getElementById('hm').onclick=()=>{S.saved=false;home()};document.getElementById('hb').onclick=()=>{S.saved=false;home()};
+  app.querySelectorAll('[data-f]').forEach(b=>b.onclick=()=>{rf=b.dataset.f;const y=scrollY;finish();scrollTo(0,y)});
+  window.scrollTo(0,0);
+}
+
+document.addEventListener('keydown',e=>{
+  if(!document.getElementById('modal').hidden){if(e.key==='Escape')document.getElementById('mno').click();return}
+  if(!S.idx||S.done||e.metaKey||e.ctrlKey||e.altKey)return;
+  const q=DATA[S.paper][S.idx[S.pos]],k=e.key.toUpperCase(),i=L.indexOf(k);
+  if(k.length===1&&i>=0&&i<q.o.length){pick(i);return}
+  if(/^[1-9]$/.test(e.key)&&+e.key<=q.o.length){pick(+e.key-1);return}
+  if(e.key==='Enter'){e.preventDefault();const c=document.getElementById('chk')||document.getElementById('nx');if(c&&!c.disabled)c.click()}
+  if(e.key==='ArrowRight'&&S.pos<S.idx.length-1){S.pos++;quiz()}
+  if(e.key==='ArrowLeft'&&S.pos){S.pos--;quiz()}
+});
+if(S.paper!=null)start(S.paper);else home();
+}
+</script>
+</body>
+</html>
