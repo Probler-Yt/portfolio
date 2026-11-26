@@ -264,6 +264,7 @@ const SND={on:store.get('snd',true),c:null,ka:null,
  tick(){this.tone(1300,0,.035,'square',.03)},
  win(){[0,4,7,12,16].forEach((s,i)=>this.tone(523.25*Math.pow(2,s/12),i*.09,.38,'triangle',.13));this.tone(1046.5,.48,.7,'sine',.07)},
  end(){this.tone(392,0,.22,'triangle',.12);this.tone(311.1,.2,.4,'triangle',.11)},
+ shing(){this.tone(2600,0,.28,'sawtooth',.03,1300);this.tone(3400,.05,.22,'triangle',.04,1800)},
  beeps(){[0,.17,.34,.51].forEach(t=>{this.tone(415.3,t,.11,'square',.05);this.tone(523.3,t,.11,'square',.04)})}};
 ['pointerdown','keydown','touchstart'].forEach(ev=>addEventListener(ev,()=>SND.unlock(),{capture:true,passive:true}));
 document.addEventListener('visibilitychange',()=>{if(!SND.c)return;if(document.hidden)SND.c.suspend().catch(()=>{});else if(SND.on)SND.c.resume().catch(()=>{})});
@@ -276,18 +277,18 @@ function floatPts(el,txt,bad){const f=document.createElement('span');f.className
   if(r&&r.top>90&&r.bottom<innerHeight-40){x=Math.min(innerWidth-70,r.left+r.width*.72);y=r.top+r.height/2-18}
   f.style.left=x+'px';f.style.top=y+'px';document.body.appendChild(f);setTimeout(()=>f.remove(),1150)}
 const JOKES=[
- {m:/obscures your view/i,e:'🍗',ok:'Chicken wing! Arm over the seat and look where you’re going.',no:'Chicken wing it. Travel in reverse, looking where you’re going.',fx:'wing'},
- {m:/horn at a blind corner/i,e:'📢',ok:'Several short beeps, so nobody gets stabbed.',no:'Several short beeps. Long angry ones get you stabbed.',fx:'beep'},
+ {m:/obscures your view/i,e:'🍗',ok:'Chicken wing! Arm over the seat and look where you’re going.',no:'Chicken wing it. Travel in reverse, looking where you’re going.',up:{ok:'🍗'}},
+ {m:/horn at a blind corner/i,e:'📢',ok:'Several short beeps, so nobody gets stabbed.',no:'Several short beeps. Long angry ones get you stabbed.',up:{ok:'📯',no:'🔪'},beep:true},
  {m:/metal stillages/i,e:'🔩',ok:'Metal? Forks nice and wide.',no:'Metal? Forks nice and wide. Every time.'},
  {m:/wooden pallet/i,e:'🪵',ok:'Wood? Weight shared out equally.',no:'Wood? Spread the forks so the weight is shared equally.'},
- {m:/walking between/i,e:'🚶',ok:'Stops Richard Head strolling between your forks and the stack.',no:'Stop short, so Richard Head can’t wander between your forks and the stack.'},
+ {m:/(150mm|short distance) from the stack/i,e:'🚶',ok:'Stops Richard Head strolling between your forks and the stack.',no:'Stop short, so Richard Head can’t wander between your forks and the stack.'},
  {m:/safety of pedestrians/i,e:'🚶',ok:'Even Richard Head. Especially Richard Head.',no:'It’s on you. Even when Richard Head walks straight out in front.'}
 ];
 function joke(e,msg,race){document.querySelectorAll('.joke').forEach(j=>j.remove());const d=document.createElement('div');d.className='joke'+(race?' race':'');d.innerHTML=`<span class="e">${e}</span><span></span>`;d.lastChild.textContent=msg;document.body.appendChild(d);setTimeout(()=>d.remove(),4100)}
-function wings(){if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;for(let i=0;i<16;i++){const s=document.createElement('span');s.className='wing';s.textContent='🍗';s.style.cssText=`--x:${4+Math.random()*88}vw;--s:${30+Math.random()*28}px;--d:${2.8+Math.random()*1.6}s;--dl:${Math.random()*.9}s;--w:${(Math.random()*40-20).toFixed(0)}px`;document.body.appendChild(s);setTimeout(()=>s.remove(),5600)}}
+function rise(em){if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;for(let i=0;i<16;i++){const s=document.createElement('span');s.className='wing';s.textContent=em;s.style.cssText=`--x:${4+Math.random()*88}vw;--s:${30+Math.random()*28}px;--d:${2.8+Math.random()*1.6}s;--dl:${Math.random()*.9}s;--w:${(Math.random()*40-20).toFixed(0)}px`;document.body.appendChild(s);setTimeout(()=>s.remove(),5600)}}
 function fun(q,ok,race){
   const j=JOKES.find(j=>j.m.test(q.q));
-  if(j){setTimeout(()=>{joke(j.e,ok?j.ok:j.no,race);if(ok&&j.fx==='wing')wings();if(ok&&j.fx==='beep')SND.beeps()},ok?250:450);return}
+  if(j){setTimeout(()=>{joke(j.e,ok?j.ok:j.no,race);const u=j.up&&(ok?j.up.ok:j.up.no);if(u)rise(u);if(j.beep)ok?SND.beeps():SND.shing()},ok?250:450);return}
   if(q.c&&!ok)setTimeout(()=>joke('😬','You got CAACD up.',race),450);
 }
 function confetti(){
