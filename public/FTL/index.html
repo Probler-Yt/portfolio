@@ -161,6 +161,44 @@ h1,h2,h3{margin:0;line-height:1.15;text-wrap:balance}
 .modal h2{font-size:22px;margin-bottom:8px}
 .modal p{color:var(--mute);margin:0 0 20px}
 .modal .r{display:flex;gap:10px}.modal .r>*{flex:1}
+.snd{width:48px;height:48px;border-radius:16px;display:grid;place-items:center;flex:none;color:var(--mute)}
+.ph .snd{margin-left:auto}
+.qcard{position:relative}
+.tag.streak{color:#ffd7a0;background:rgba(240,122,26,.16);border-color:rgba(255,192,77,.35);display:inline-flex;align-items:center;gap:4px}
+.tag.streak svg{width:14px;height:14px}
+.shake{animation:shake .36s}
+@keyframes shake{20%{transform:translateX(-7px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(2px)}}
+.float{position:absolute;right:18px;top:16px;font-size:24px;font-weight:700;color:var(--good);pointer-events:none;animation:rise 1s ease-out forwards}
+.float.no{color:var(--bad)}
+@keyframes rise{0%{opacity:0;transform:translateY(10px) scale(.8)}20%{opacity:1;transform:none}100%{opacity:0;transform:translateY(-36px)}}
+.tbar{height:8px;border-radius:9px;background:var(--soft);overflow:hidden;margin:0 2px 14px}
+.tbar i{display:block;height:100%;border-radius:9px;background:linear-gradient(90deg,#ffc04d,#f07a1a)}
+.tbar.low i{background:var(--act)}
+.rhud{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin:0 4px 14px}
+.lbl{display:block;color:var(--mute);font-size:14px}
+.rhud b{font-size:34px;line-height:1.1;font-variant-numeric:tabular-nums;transition:color .2s}
+.rhud b.beat{color:var(--good)}
+.mult{display:inline-flex;align-items:center;gap:4px;padding:8px 16px;border-radius:99px;font-weight:700;font-size:18px;background:var(--soft);border:1px solid var(--line);color:var(--mute)}
+.mult svg{width:16px;height:16px}
+.mult.m2{color:#1d1206;background:linear-gradient(160deg,#ffc04d,#f07a1a);border-color:transparent}
+.mult.m3{color:#fff;background:linear-gradient(160deg,#ff7759,#d02f4b);border-color:transparent}
+.mult.m4{color:#fff;background:linear-gradient(160deg,#9b8cff,#5b45f0);border-color:transparent;box-shadow:0 0 22px rgba(155,140,255,.45)}
+.mult.pop{animation:popm .45s}
+@keyframes popm{40%{transform:scale(1.25)}}
+.toast{position:fixed;top:max(16px,env(safe-area-inset-top));left:50%;transform:translateX(-50%);padding:12px 22px;border-radius:99px;z-index:25;font-weight:500;white-space:nowrap;animation:toast 2.2s ease forwards;background:linear-gradient(180deg,rgba(48,54,63,.95),rgba(30,34,40,.95))}
+@keyframes toast{0%{opacity:0;transform:translate(-50%,-12px)}10%,80%{opacity:1;transform:translate(-50%,0)}100%{opacity:0;transform:translate(-50%,-8px)}}
+.confetti{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:30}
+.wide{width:100%}
+.race .sh h2{flex:1}
+.chal{border-color:rgba(255,192,77,.45)}
+.rres{text-align:center}
+.bigs{font-size:clamp(56px,16vw,76px);font-weight:700;line-height:1;margin:6px 0 2px;font-variant-numeric:tabular-nums}
+.rres .status{margin-top:12px}
+.vs{font-size:18px;font-weight:500;margin:10px 0 0}.vs.ok{color:var(--good)}.vs.no{color:var(--bad)}
+.field{display:block;margin:0 0 12px}
+.field span{display:block;color:var(--mute);font-size:14px;margin:0 0 6px 4px}
+.field input{width:100%;min-height:52px;padding:0 20px;border-radius:99px;background:rgba(0,0,0,.25);border:1px solid var(--line);color:var(--ink);font:17px Roboto,system-ui,sans-serif}
+.field input:focus{outline:2px solid var(--sel);outline-offset:1px}
 @media(max-width:560px){.modes{grid-template-columns:1fr}.foot{flex-wrap:wrap}.foot .pillbtn{width:100%}.ring{width:112px;height:112px}.ring .v b{font-size:28px}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
@@ -186,6 +224,10 @@ const I={
  left:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>',
  ok:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.7 2.7L16 9.8"/></svg>',
  no:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg>',
+ bolt:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.6 2.2 4.8 13.4h6.1l-1.4 8.4 8.9-11.4h-6.2z"/></svg>',
+ sndOn:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path d="M15.5 9a4 4 0 0 1 0 6M18.3 6.5a7.5 7.5 0 0 1 0 11"/></svg>',
+ sndOff:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path d="M16 9.5l5 5M21 9.5l-5 5"/></svg>',
+ share:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5.5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="18.5" r="2.5"/><path d="M8.2 10.8l7.6-4M8.2 13.2l7.6 4"/></svg>',
  ext:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>'
 };
 const PT=['t-blue','t-green','t-purple'];
@@ -198,15 +240,52 @@ const hp=/^#paper-([123])$/.exec(location.hash);if(hp)S.paper=+hp[1]-1;
 const isRight=(q,sel)=>!!sel&&sel.length===q.k&&sel.every(i=>q.a.includes(i));
 const fmt=s=>`${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`;
 const practice=()=>S.mode==='practice'||S.retry;
-let tick=null,rf='all';
+let tick=null,rf='all',R=null;
+const RACE_T=90;
+const fmtN=n=>n.toLocaleString('en-GB');
+const SND={on:store.get('snd',true),c:null,
+ ac(){if(!this.c){const A=window.AudioContext||window.webkitAudioContext;if(!A)return null;try{this.c=new A()}catch(e){return null}}if(this.c.state==='suspended')this.c.resume();return this.c},
+ tone(f,t0,d,type,v,f2){if(!this.on)return;const c=this.ac();if(!c)return;const o=c.createOscillator(),g=c.createGain(),t=c.currentTime+t0;o.type=type||'sine';o.frequency.setValueAtTime(f,t);if(f2)o.frequency.exponentialRampToValueAtTime(f2,t+d);g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(v||.12,t+.012);g.gain.exponentialRampToValueAtTime(.0001,t+d);o.connect(g);g.connect(c.destination);o.start(t);o.stop(t+d+.03)},
+ tap(){this.tone(540,0,.06,'sine',.07)},
+ ok(s){const b=523.25*Math.pow(2,Math.min(s||0,12)/12);this.tone(b,0,.14,'triangle',.16);this.tone(b*1.5,.08,.24,'triangle',.13)},
+ no(){this.tone(196,0,.24,'square',.045,130);this.tone(150,.04,.26,'sine',.12,100)},
+ level(){[0,4,7,12].forEach((s,i)=>this.tone(659.25*Math.pow(2,s/12),i*.07,.2,'triangle',.12))},
+ tick(){this.tone(1300,0,.035,'square',.03)},
+ win(){[0,4,7,12,16].forEach((s,i)=>this.tone(523.25*Math.pow(2,s/12),i*.09,.38,'triangle',.13));this.tone(1046.5,.48,.7,'sine',.07)},
+ end(){this.tone(392,0,.22,'triangle',.12);this.tone(311.1,.2,.4,'triangle',.11)}};
+const buzz=p=>{try{if(SND.on&&navigator.vibrate)navigator.vibrate(p)}catch(e){}};
+const sndBtn=()=>`<button class="snd glass" data-snd aria-label="${SND.on?'Mute sounds':'Turn sounds on'}">${SND.on?I.sndOn:I.sndOff}</button>`;
+document.addEventListener('click',e=>{const b=e.target.closest('[data-snd]');if(!b)return;SND.on=!SND.on;store.set('snd',SND.on);document.querySelectorAll('[data-snd]').forEach(x=>{x.innerHTML=SND.on?I.sndOn:I.sndOff;x.setAttribute('aria-label',SND.on?'Mute sounds':'Turn sounds on')});SND.tap()});
+function toast(msg){const d=document.createElement('div');d.className='toast glass';d.textContent=msg;document.body.appendChild(d);setTimeout(()=>d.remove(),2300)}
+function floatPts(el,txt,bad){if(!el)return;const f=document.createElement('span');f.className='float'+(bad?' no':'');f.textContent=txt;el.appendChild(f);setTimeout(()=>f.remove(),1000)}
+function confetti(){
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  const c=document.createElement('canvas');c.className='confetti';document.body.appendChild(c);
+  const x=c.getContext('2d'),d=window.devicePixelRatio||1,W=c.width=innerWidth*d,H=c.height=innerHeight*d;
+  const cols=['#ffc04d','#f07a1a','#ff7759','#e53b4e','#5cb2ff','#3ddc84','#9b8cff'];
+  const P=Array.from({length:160},()=>({x:W/2+(Math.random()-.5)*W*.4,y:H*.38,vx:(Math.random()-.5)*18*d,vy:(-Math.random()*17-6)*d,r:(5+Math.random()*6)*d,c:cols[Math.random()*cols.length|0],a:Math.random()*6,va:(Math.random()-.5)*.35}));
+  const t0=performance.now();
+  (function f(now){const e=now-t0;x.clearRect(0,0,W,H);for(const p of P){p.vy+=.42*d;p.vx*=.99;p.x+=p.vx;p.y+=p.vy;p.a+=p.va;x.save();x.translate(p.x,p.y);x.rotate(p.a);x.globalAlpha=Math.max(0,1-e/3000);x.fillStyle=p.c;x.fillRect(-p.r/2,-p.r/4,p.r,p.r/2);x.restore()}if(e<3000)requestAnimationFrame(f);else c.remove()})(t0);
+}
+const rng=s=>()=>{s|=0;s=s+0x6D2B79F5|0;let t=Math.imul(s^s>>>15,1|s);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296};
+const shuffle=(a,r)=>{for(let i=a.length-1;i>0;i--){const j=r()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
+const ALLQ=[];{const seen=new Set();DATA.forEach((P,p)=>P.forEach((q,i)=>{const k=q.q+'|'+q.o.join('|');if(!seen.has(k)){seen.add(k);ALLQ.push({p,i,q})}}))}
+const mult=s=>s>=10?4:s>=6?3:s>=3?2:1;
+let CH=null;{const v=new URLSearchParams(location.search).get('race');const m=v&&/^(\d{1,10})\.(\d{1,7})\.(.{1,80})$/s.exec(v);if(m){const n=m[3].replace(/[\u0000-\u001f\u007f]/g,'').trim().slice(0,20)||'Your mate';CH={seed:+m[1],score:+m[2],name:n}}}
 const credit=()=>`<section class="foot glass"><span class="tile t-grey">${I.user}</span><div class="tx"><b>Made by Mohamed Mahjoub</b>For class revision. Not an official test.</div><a class="pillbtn" href="${PORTFOLIO}" target="_blank" rel="noopener">View portfolio ${I.ext}</a></section>`;
 
 function home(){
-  clearInterval(tick);S.idx=null;S.done=false;
+  clearInterval(tick);S.idx=null;S.done=false;if(R)R.live=false;
   history.replaceState(null,'',location.pathname);
-  const best=store.get('best',{});
+  const best=store.get('best',{}),rb=store.get('race',{score:0,streak:0});
   app.innerHTML=`
-  <header class="ph"><span class="tile lg t-amber">${I.lift}</span><div><h1>Forklift Theory</h1><p>Counterbalance LTG1 · B1/B4 practice papers</p></div></header>
+  <header class="ph"><span class="tile lg t-amber">${I.lift}</span><div><h1>Forklift Theory</h1><p>Counterbalance LTG1 · B1/B4 practice papers</p></div>${sndBtn()}</header>
+  ${CH?`<section class="sec glass chal"><div class="sh"><span class="tile t-red">${I.bolt}</span><h2>${esc(CH.name)} has challenged you</h2></div><p class="note" style="margin:0 2px 16px">Beat ${fmtN(CH.score)} points in a ${RACE_T} second race. You get the same questions in the same order.</p><button class="pillbtn act wide" id="acc">Accept challenge</button></section>`:''}
+  <section class="sec glass race">
+    <div class="sh"><span class="tile t-red">${I.bolt}</span><h2>Race the clock</h2>${rb.score?`<span class="tag">Best ${fmtN(rb.score)}</span>`:''}</div>
+    <p class="note" style="margin:0 2px 16px">${RACE_T} seconds, questions from all three papers in random order. Quick answers and streaks score more. A wrong answer costs 3 seconds.</p>
+    <button class="pillbtn act wide" id="rgo">${I.bolt.replace('<svg','<svg width="18" height="18"')} Start race</button>
+  </section>
   <section class="sec glass">
     <div class="sh"><span class="tile t-red">${I.info}</span><h2>About the test</h2></div>
     <div class="facts"><div class="fact"><span>Questions</span><b>25</b></div><div class="fact"><span>Time allowed</span><b>30 minutes</b></div><div class="fact"><span>Pass mark</span><b>80% (20/25)</b></div><div class="fact"><span>Must be correct</span><b>Q6 to Q10</b></div></div>
@@ -226,13 +305,15 @@ function home(){
   ${credit()}`;
   app.querySelectorAll('[data-mode]').forEach(b=>b.onclick=()=>{S.mode=b.dataset.mode;store.set('mode',S.mode);app.querySelectorAll('[data-mode]').forEach(x=>x.setAttribute('aria-pressed',x===b))});
   app.querySelectorAll('[data-p]').forEach(b=>b.onclick=()=>start(+b.dataset.p));
+  document.getElementById('rgo').onclick=()=>raceStart(null);
+  const acc=document.getElementById('acc');if(acc)acc.onclick=()=>{const c=CH;CH=null;raceStart(c)};
   window.scrollTo(0,0);
 }
 
 function start(p,only){
-  S={...S,paper:p,idx:only||DATA[p].map((_,i)=>i),pos:0,sel:{},checked:{},done:false,saved:false,left:MINS*60,retry:!!only};
+  S={...S,paper:p,idx:only||DATA[p].map((_,i)=>i),pos:0,sel:{},checked:{},done:false,saved:false,cheered:false,streak:0,left:MINS*60,retry:!!only};
   history.replaceState(null,'','#paper-'+(p+1));
-  clearInterval(tick);
+  clearInterval(tick);if(R)R.live=false;
   if(!practice())tick=setInterval(()=>{S.left--;const t=document.getElementById('tm');if(t){t.textContent=fmt(S.left);t.classList.toggle('low',S.left<=300)}if(S.left<=0){clearInterval(tick);finish()}},1000);
   quiz();window.scrollTo(0,0);
 }
@@ -250,10 +331,10 @@ function quiz(){
   app.innerHTML=`
   <header class="qh"><button class="back glass" id="ex" aria-label="Back to papers">${I.left}</button>
     <div class="tx"><b>Paper ${S.paper+1}${S.retry?' · Review mistakes':''}</b><span>Question ${S.pos+1} of ${n} · ${answered} answered</span></div>
-    ${!practice()?`<span class="timer glass ${S.left<=300?'low':''}" id="tm" aria-label="Time left">${fmt(S.left)}</span>`:''}</header>
+    ${sndBtn()}${!practice()?`<span class="timer glass ${S.left<=300?'low':''}" id="tm" aria-label="Time left">${fmt(S.left)}</span>`:''}</header>
   <div class="prog" aria-hidden="true"><i style="width:${(S.pos+1)/n*100}%"></i></div>
   <article class="qcard glass">
-    <div class="tags"><span class="tag">Question ${qi+1}</span>${q.c?'<span class="tag must">Must be correct to pass</span>':''}${q.k>1?`<span class="tag">Select ${q.k} answers</span>`:''}</div>
+    <div class="tags"><span class="tag">Question ${qi+1}</span>${q.c?'<span class="tag must">Must be correct to pass</span>':''}${q.k>1?`<span class="tag">Select ${q.k} answers</span>`:''}${practice()&&S.streak>=2?`<span class="tag streak">${I.bolt}${S.streak} in a row</span>`:''}</div>
     <h2 class="qtext">${esc(q.q)}</h2>
     <div class="opts">${opts}</div>
     ${chk?`<div class="verdict ${ok?'ok':'no'}">${ok?I.ok+'Correct':I.no+`Incorrect. The correct answer${many?'s are':' is'} ${q.a.map(i=>L[i]).join(', ')}${q.a.length>q.k?` (any ${q.k} of these)`:''}.`}</div>`:''}
@@ -272,9 +353,12 @@ function pick(i){
   const qi=S.idx[S.pos],q=DATA[S.paper][qi];let s=S.sel[qi]||[];
   if(practice()&&S.checked[qi])return;
   if(q.k===1)s=[i];else if(s.includes(i))s=s.filter(x=>x!==i);else if(s.length<q.k)s=[...s,i];else s=[...s.slice(1),i];
-  S.sel[qi]=s;quiz();
+  S.sel[qi]=s;SND.tap();quiz();
 }
-function check(){const qi=S.idx[S.pos],q=DATA[S.paper][qi];if((S.sel[qi]||[]).length!==q.k)return;S.checked[qi]=true;quiz()}
+function check(){const qi=S.idx[S.pos],q=DATA[S.paper][qi];if((S.sel[qi]||[]).length!==q.k)return;S.checked[qi]=true;
+  const ok=isRight(q,S.sel[qi]);
+  if(ok){S.streak++;SND.ok(S.streak-1);buzz(12);if([3,6,10,15,20].includes(S.streak)){setTimeout(()=>SND.level(),170);toast(`${S.streak} in a row`)}}else{S.streak=0;SND.no();buzz([30,50,30])}
+  quiz();const c=app.querySelector('.qcard');if(ok)floatPts(c,'Correct');else c.classList.add('shake')}
 function next(){
   if(S.pos<S.idx.length-1){S.pos++;quiz();window.scrollTo(0,0);return}
   const miss=S.idx.filter(j=>!(S.sel[j]||[]).length).length;
@@ -282,10 +366,10 @@ function next(){
   else if(practice()&&S.idx.some(j=>!S.checked[j]))ask('Finish now?','Questions you have not checked will be marked as incorrect.','Finish',finish);
   else finish();
 }
-function ask(t,p,yes,fn){
+function ask(t,p,yes,fn,cancel){
   const m=document.getElementById('modal');document.getElementById('mt').textContent=t;document.getElementById('mp').textContent=p;
   const y=document.getElementById('myes');y.textContent=yes;m.hidden=false;y.focus();
-  const close=()=>{m.hidden=true};document.getElementById('mno').onclick=close;y.onclick=()=>{close();fn()};m.onclick=e=>{if(e.target===m)close()};
+  const close=()=>{m.hidden=true};document.getElementById('mno').onclick=()=>{close();if(cancel)cancel()};y.onclick=()=>{close();fn()};m.onclick=e=>{if(e.target===m){close();if(cancel)cancel()}};
 }
 
 function finish(){
@@ -295,6 +379,7 @@ function finish(){
   const crit=res.filter(r=>P[r.j].c),critOk=crit.filter(r=>r.ok).length;
   const full=!S.retry,pass=full&&score>=PASS&&critOk===crit.length;
   if(full&&!S.saved){const b=store.get('best',{}),o=b[S.paper];b[S.paper]={s:Math.max(score,o?o.s:0),pass:pass||!!(o&&o.pass)};store.set('best',b);S.saved=true}
+  if(!S.cheered){S.cheered=true;if(pass||(!full&&score===n)){SND.win();confetti()}else SND.end()}
   const wrong=res.filter(r=>!r.ok).map(r=>r.j),C=2*Math.PI*56;
   let why;
   if(!full)why=`${score} of ${n} answered correctly this time.`;
@@ -326,8 +411,107 @@ function finish(){
   window.scrollTo(0,0);
 }
 
+function raceStart(ch){
+  clearInterval(tick);S.idx=null;S.done=false;
+  const seed=ch?ch.seed:(Math.random()*2147483646|0)+1;
+  R={seed,ch,order:shuffle(ALLQ.map((_,i)=>i),rng(seed)),pos:0,score:0,streak:0,bestStreak:0,right:0,answered:0,left:RACE_T*1000,last:performance.now(),paused:false,lock:false,sel:[],live:true,beat:false,lastSec:RACE_T};
+  history.replaceState(null,'',location.pathname+'#race');
+  raceQ();window.scrollTo(0,0);SND.tap();
+  tick=setInterval(raceTick,100);
+}
+function raceTick(){
+  if(!R||!R.live)return;const now=performance.now();if(!R.paused)R.left-=now-R.last;R.last=now;
+  const l=Math.max(0,R.left),sec=Math.ceil(l/1000),tt=document.getElementById('tt'),tb=document.getElementById('tb');
+  if(tt){tt.textContent=fmt(sec);tt.classList.toggle('low',sec<=10)}
+  if(tb){tb.style.width=(l/(RACE_T*10))+'%';tb.parentNode.classList.toggle('low',sec<=10)}
+  if(sec<R.lastSec){R.lastSec=sec;if(sec<=10&&sec>0&&!R.paused)SND.tick()}
+  if(l<=0&&!R.paused)raceEnd();
+}
+const rcur=()=>ALLQ[R.order[R.pos%R.order.length]];
+function raceQ(){
+  const {q,p,i}=rcur(),m=mult(R.streak),sec=Math.ceil(Math.max(0,R.left)/1000);
+  R.sel=[];R.lock=false;R.qt=performance.now();
+  app.innerHTML=`
+  <header class="qh"><button class="back glass" id="ex" aria-label="Leave race">${I.left}</button>
+    <div class="tx"><b>Race</b><span>${R.right} correct${R.ch?` · Target ${fmtN(R.ch.score)}`:''}</span></div>
+    ${sndBtn()}<span class="timer glass ${sec<=10?'low':''}" id="tt" aria-label="Time left">${fmt(sec)}</span></header>
+  <div class="tbar ${sec<=10?'low':''}"><i id="tb" style="width:${Math.max(0,R.left)/(RACE_T*10)}%"></i></div>
+  <div class="rhud"><div><span class="lbl">Points</span><b id="rs" class="${R.beat?'beat':''}">${fmtN(R.score)}</b></div><span class="mult m${m}" id="rm">${m>1?I.bolt:''}x${m}</span></div>
+  <article class="qcard glass" id="rc">
+    <div class="tags"><span class="tag">Paper ${p+1} · Q${i+1}</span>${q.c?'<span class="tag must">Must pass</span>':''}${q.k>1?`<span class="tag" id="need">Select ${q.k} answers</span>`:''}${R.streak>=2?`<span class="tag streak">${I.bolt}${R.streak} in a row</span>`:''}</div>
+    <h2 class="qtext">${esc(q.q)}</h2>
+    <div class="opts">${q.o.map((t,j)=>`<button class="opt" data-r="${j}"><span class="k">${L[j]}</span><span>${esc(t)}</span></button>`).join('')}</div>
+  </article>`;
+  app.querySelectorAll('[data-r]').forEach(b=>b.onclick=()=>racePick(+b.dataset.r));
+  document.getElementById('ex').onclick=()=>{R.paused=true;ask('Leave the race?','This run will not be saved.','Leave',home,()=>{R.paused=false;R.last=performance.now()})};
+}
+function racePick(j){
+  if(!R||!R.live||R.lock||R.paused)return;const {q}=rcur();
+  if(q.k===1)R.sel=[j];else R.sel=R.sel.includes(j)?R.sel.filter(x=>x!==j):[...R.sel,j];
+  app.querySelectorAll('[data-r]').forEach((b,x)=>b.classList.toggle('sel',R.sel.includes(x)));
+  const nd=document.getElementById('need');if(nd)nd.textContent=R.sel.length<q.k?`Select ${q.k-R.sel.length} more`:'Checking';
+  if(R.sel.length===q.k)raceSubmit();else SND.tap();
+}
+function raceSubmit(){
+  const {q}=rcur(),ok=isRight(q,R.sel),card=document.getElementById('rc');
+  R.lock=true;R.paused=true;R.answered++;
+  app.querySelectorAll('[data-r]').forEach((b,x)=>{b.classList.remove('sel');b.disabled=true;const on=R.sel.includes(x),a=q.a.includes(x);if(a&&on)b.classList.add('right');else if(on)b.classList.add('wrong');else if(a&&q.k===q.a.length)b.classList.add('miss')});
+  const before=mult(R.streak);
+  if(ok){
+    R.streak++;R.right++;R.bestStreak=Math.max(R.bestStreak,R.streak);
+    const m=mult(R.streak),t=performance.now()-R.qt,bonus=Math.round(Math.max(0,Math.min(50,50*(1-(t-2500)/7500)))),pts=((q.k>1?150:100)+bonus)*m;
+    R.score+=pts;floatPts(card,'+'+fmtN(pts));SND.ok(R.streak-1);buzz(12);
+    if(m>before){setTimeout(()=>SND.level(),170);toast(`${R.streak} in a row. Points x${m}`)}
+  }else{R.streak=0;R.left-=3000;floatPts(card,'−3 seconds',true);SND.no();buzz([30,50,30]);card.classList.add('shake')}
+  const rs=document.getElementById('rs'),rm=document.getElementById('rm'),m2=mult(R.streak);
+  rs.textContent=fmtN(R.score);rm.className='mult m'+m2+(m2!==before?' pop':'');rm.innerHTML=(m2>1?I.bolt:'')+'x'+m2;
+  if(R.ch&&!R.beat&&R.score>R.ch.score){R.beat=true;rs.classList.add('beat');setTimeout(()=>SND.level(),420);setTimeout(()=>toast(`You've passed ${R.ch.name}'s score`),300)}
+  setTimeout(()=>{if(!R||!R.live)return;R.pos++;R.paused=false;R.last=performance.now();if(R.left<=0)raceEnd();else raceQ()},ok?650:1400);
+}
+function raceEnd(){
+  clearInterval(tick);if(!R||!R.live)return;R.live=false;const r=R;
+  const best=store.get('race',{score:0,streak:0}),pb=r.score>best.score;
+  store.set('race',{score:Math.max(r.score,best.score),streak:Math.max(r.bestStreak,best.streak)});
+  const won=r.ch&&r.score>r.ch.score;
+  if((pb&&r.score>0)||won){SND.win();confetti()}else SND.end();
+  const acc=r.answered?Math.round(r.right/r.answered*100):0;
+  history.replaceState(null,'',location.pathname);
+  app.innerHTML=`
+  <header class="qh"><button class="back glass" id="hb" aria-label="Home">${I.left}</button><div class="tx"><b>Race results</b><span>${r.ch?`Challenge from ${esc(r.ch.name)}`:`${RACE_T} second race`}</span></div>${sndBtn()}</header>
+  <section class="sec glass rres">
+    <span class="lbl">Time's up. You scored</span>
+    <div class="bigs">${fmtN(r.score)}</div><span class="lbl">points</span>
+    ${pb&&r.score>0?`<div class="status ok">${I.ok}New personal best</div>`:`<p class="note" style="text-align:center">Your best: ${fmtN(Math.max(best.score,r.score))}</p>`}
+    ${r.ch?`<p class="vs ${won?'ok':'no'}">${won?`You beat ${esc(r.ch.name)} by ${fmtN(r.score-r.ch.score)} points`:r.score===r.ch.score?`A draw with ${esc(r.ch.name)}`:`${esc(r.ch.name)} wins by ${fmtN(r.ch.score-r.score)} points`}</p>`:''}
+    <div class="stats"><div class="fact"><span>Correct</span><b>${r.right}/${r.answered}</b></div><div class="fact"><span>Accuracy</span><b>${acc}%</b></div><div class="fact"><span>Best streak</span><b>${r.bestStreak}</b></div></div>
+    <div class="acts"><button class="pillbtn act" id="again">Race again</button>${r.ch?'<button class="pillbtn" id="rematch">Rematch</button>':''}<button class="pillbtn" id="hm">Home</button></div>
+  </section>
+  <section class="sec glass">
+    <div class="sh"><span class="tile t-blue">${I.share}</span><h2>Challenge a mate</h2></div>
+    <p class="note" style="margin:0 2px 14px">Send a link. They get the same questions in the same order, with your score to beat.</p>
+    <label class="field"><span>Your name</span><input id="nm" maxlength="20" autocomplete="given-name" placeholder="First name"></label>
+    <button class="pillbtn act wide" id="share">Send challenge</button>
+    <p class="note" id="sm" aria-live="polite"></p>
+  </section>
+  ${credit()}`;
+  const nm=document.getElementById('nm');nm.value=store.get('name','');
+  document.getElementById('again').onclick=()=>raceStart(null);
+  const rm=document.getElementById('rematch');if(rm)rm.onclick=()=>raceStart(r.ch);
+  document.getElementById('hm').onclick=home;document.getElementById('hb').onclick=home;
+  document.getElementById('share').onclick=async()=>{
+    const sm=document.getElementById('sm'),name=nm.value.trim().slice(0,20);
+    if(!name){sm.textContent='Add your name first so they know who to beat.';nm.focus();return}
+    store.set('name',name);
+    const url=`${location.origin}${location.pathname}?race=${r.seed}.${r.score}.${encodeURIComponent(name)}`;
+    const text=`${name} scored ${fmtN(r.score)} on the forklift theory race. Can you beat it?`;
+    if(navigator.share){try{await navigator.share({title:'Forklift theory race',text,url});sm.textContent='Challenge sent.';return}catch(e){if(e&&e.name==='AbortError')return}}
+    try{await navigator.clipboard.writeText(text+' '+url);sm.textContent='Link copied. Paste it into your group chat.'}catch(e){sm.textContent=url}
+  };
+  window.scrollTo(0,0);
+}
 document.addEventListener('keydown',e=>{
   if(!document.getElementById('modal').hidden){if(e.key==='Escape')document.getElementById('mno').click();return}
+  if(R&&R.live){if(e.metaKey||e.ctrlKey||e.altKey)return;const q=ALLQ[R.order[R.pos%R.order.length]].q,k=e.key.toUpperCase(),i=L.indexOf(k);if(k.length===1&&i>=0&&i<q.o.length)racePick(i);else if(/^[1-9]$/.test(e.key)&&+e.key<=q.o.length)racePick(+e.key-1);return}
   if(!S.idx||S.done||e.metaKey||e.ctrlKey||e.altKey)return;
   const q=DATA[S.paper][S.idx[S.pos]],k=e.key.toUpperCase(),i=L.indexOf(k);
   if(k.length===1&&i>=0&&i<q.o.length){pick(i);return}
@@ -336,7 +520,7 @@ document.addEventListener('keydown',e=>{
   if(e.key==='ArrowRight'&&S.pos<S.idx.length-1){S.pos++;quiz()}
   if(e.key==='ArrowLeft'&&S.pos){S.pos--;quiz()}
 });
-if(S.paper!=null)start(S.paper);else home();
+if(CH)home();else if(S.paper!=null)start(S.paper);else home();
 }
 </script>
 </body>
