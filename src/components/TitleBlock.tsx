@@ -1,4 +1,5 @@
 import { person, primaryCv, titleBlock } from '../content';
+import { cvEvent, track } from '../analytics';
 import { DownloadIcon, GitHubIcon, LinkedInIcon, MailIcon, ProjectionSymbol } from './Icons';
 
 // The hero is laid out like the title block in the corner of an engineering drawing.
@@ -26,7 +27,7 @@ export default function TitleBlock() {
 
       <div className="tb__foot">
         <div className="tb__actions">
-          <a className="btn btn--primary" href={primaryCv} download>
+          <a className="btn btn--primary" href={primaryCv} download onClick={() => track(cvEvent(primaryCv), 'CV download: main button (title)')}>
             <DownloadIcon />
             <span>Download CV</span>
           </a>

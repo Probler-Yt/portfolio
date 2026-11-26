@@ -1,5 +1,6 @@
 import { cvHref, cvs } from '../content';
 import { DownloadIcon } from './Icons';
+import { cvEvent, track } from '../analytics';
 
 export default function CVs() {
   return (
@@ -13,7 +14,7 @@ export default function CVs() {
               <h3 className="cvs__title">{cv.title}</h3>
               <p>{cv.text}</p>
             </div>
-            <a className={`btn${cv.primary ? ' btn--primary' : ''}`} href={cvHref(cv.file)} download>
+            <a className={`btn${cv.primary ? ' btn--primary' : ''}`} href={cvHref(cv.file)} download onClick={() => track(cvEvent(cv.file), `CV download: ${cv.title}`)}>
               <DownloadIcon />
               <span>
                 Download PDF<span className="visually-hidden">: {cv.title} CV</span>

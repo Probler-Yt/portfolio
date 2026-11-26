@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { person, primaryCv } from '../content';
+import { cvEvent, track } from '../analytics';
 import { DownloadIcon } from './Icons';
 
 const nav = [
@@ -33,7 +34,7 @@ export default function Header() {
             </a>
           ))}
         </nav>
-        <a className="btn btn--primary btn--small" href={primaryCv} download>
+        <a className="btn btn--primary btn--small" href={primaryCv} download onClick={() => track(cvEvent(primaryCv), 'CV download: main button (header)')}>
           <DownloadIcon size={16} />
           <span>Download CV</span>
         </a>
