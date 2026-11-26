@@ -35,7 +35,7 @@
 --act:linear-gradient(90deg,#ff7759,#e53b4e 55%,#a81c49);
 --good:#3ddc84;--goodbg:rgba(61,220,132,.13);--bad:#ff6b6b;--badbg:rgba(255,107,107,.13);--sel:#5aa9ff;--selbg:rgba(90,169,255,.14)}
 *{box-sizing:border-box;min-width:0}
-html{background:var(--bg)}
+html{background:var(--bg);touch-action:manipulation}
 body{margin:0;min-height:100vh;color:var(--ink);font:17px/1.5 Roboto,system-ui,-apple-system,"Segoe UI",sans-serif;overflow-x:clip;-webkit-tap-highlight-color:transparent;-webkit-font-smoothing:antialiased}
 button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;padding:0}
 button:disabled{cursor:default}
@@ -169,9 +169,17 @@ h1,h2,h3{margin:0;line-height:1.15;text-wrap:balance}
 .tag.streak svg{width:14px;height:14px}
 .shake{animation:shake .36s}
 @keyframes shake{20%{transform:translateX(-7px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(2px)}}
-.float{position:absolute;right:18px;top:16px;font-size:24px;font-weight:700;color:var(--good);pointer-events:none;animation:rise 1s ease-out forwards}
+.float{position:fixed;z-index:26;font-size:26px;font-weight:700;color:var(--good);pointer-events:none;white-space:nowrap;text-shadow:0 2px 12px rgba(0,0,0,.6);animation:rise 1.1s ease-out forwards}
 .float.no{color:var(--bad)}
-@keyframes rise{0%{opacity:0;transform:translateY(10px) scale(.8)}20%{opacity:1;transform:none}100%{opacity:0;transform:translateY(-36px)}}
+@keyframes rise{0%{opacity:0;transform:translate(-50%,10px) scale(.8)}20%{opacity:1;transform:translate(-50%,0)}100%{opacity:0;transform:translate(-50%,-44px)}}
+.sticky{position:sticky;top:0;z-index:6;margin:-8px -10px 14px;padding:max(8px,env(safe-area-inset-top)) 10px 10px;border-radius:0 0 24px 24px;background:linear-gradient(180deg,rgba(13,16,20,.94),rgba(13,16,20,.8));-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px)}
+.sticky .qh{margin-bottom:12px}.sticky .prog,.sticky .tbar{margin-bottom:0}.sticky .rhud{margin:12px 4px 0}
+.joke{position:fixed;left:50%;bottom:calc(max(14px,env(safe-area-inset-bottom)) + 88px);width:min(520px,calc(100% - 32px));padding:14px 18px;border-radius:22px;z-index:24;display:flex;gap:14px;align-items:center;font-weight:500;font-size:16.5px;line-height:1.35;pointer-events:none;background:linear-gradient(180deg,rgba(66,52,30,.96),rgba(38,31,22,.96));border:1px solid rgba(255,192,77,.45);box-shadow:0 18px 40px rgba(0,0,0,.4);animation:jk 4s ease forwards}
+.joke.race{bottom:max(18px,env(safe-area-inset-bottom))}
+.joke .e{font-size:30px;line-height:1;flex:none}
+@keyframes jk{0%{opacity:0;transform:translate(-50%,18px) scale(.96)}7%,86%{opacity:1;transform:translate(-50%,0)}100%{opacity:0;transform:translate(-50%,10px)}}
+.wing{position:fixed;bottom:-70px;left:var(--x);font-size:var(--s);line-height:1;z-index:27;pointer-events:none;animation:wingup var(--d) cubic-bezier(.3,.1,.6,1) var(--dl) forwards}
+@keyframes wingup{0%{transform:translate(0,0) rotate(0)}25%{transform:translate(var(--w),-30vh) rotate(-12deg)}50%{transform:translate(calc(var(--w) * -1),-62vh) rotate(10deg)}100%{transform:translate(var(--w),-125vh) rotate(-8deg)}}
 .tbar{height:8px;border-radius:9px;background:var(--soft);overflow:hidden;margin:0 2px 14px}
 .tbar i{display:block;height:100%;border-radius:9px;background:linear-gradient(90deg,#ffc04d,#f07a1a)}
 .tbar.low i{background:var(--act)}
@@ -244,21 +252,44 @@ const practice=()=>S.mode==='practice'||S.retry;
 let tick=null,rf='all',R=null;
 const RACE_T=90;
 const fmtN=n=>n.toLocaleString('en-GB');
-const SND={on:store.get('snd',true),c:null,
- ac(){if(!this.c){const A=window.AudioContext||window.webkitAudioContext;if(!A)return null;try{this.c=new A()}catch(e){return null}}if(this.c.state==='suspended')this.c.resume();return this.c},
- tone(f,t0,d,type,v,f2){if(!this.on)return;const c=this.ac();if(!c)return;const o=c.createOscillator(),g=c.createGain(),t=c.currentTime+t0;o.type=type||'sine';o.frequency.setValueAtTime(f,t);if(f2)o.frequency.exponentialRampToValueAtTime(f2,t+d);g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(v||.12,t+.012);g.gain.exponentialRampToValueAtTime(.0001,t+d);o.connect(g);g.connect(c.destination);o.start(t);o.stop(t+d+.03)},
+const SND={on:store.get('snd',true),c:null,ka:null,
+ ac(){if(!this.c){const A=window.AudioContext||window.webkitAudioContext;if(!A)return null;try{this.c=new A({latencyHint:'interactive'})}catch(e){try{this.c=new A()}catch(e2){return null}}}return this.c},
+ unlock(){if(!this.on)return;const c=this.ac();if(!c)return;if(c.state!=='running')c.resume().catch(()=>{});
+  if(!this.ka){try{const o=c.createOscillator(),g=c.createGain();o.frequency.value=30;g.gain.value=.0006;o.connect(g);g.connect(c.destination);o.start();this.ka=o}catch(e){}}},
+ tone(f,t0,d,type,v,f2){if(!this.on)return;const c=this.ac();if(!c)return;if(c.state!=='running'){c.resume().then(()=>this.tone(f,t0,d,type,v,f2)).catch(()=>{});return}this.unlock();const o=c.createOscillator(),g=c.createGain(),t=c.currentTime+t0;o.type=type||'sine';o.frequency.setValueAtTime(f,t);if(f2)o.frequency.exponentialRampToValueAtTime(f2,t+d);g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(v||.12,t+.012);g.gain.exponentialRampToValueAtTime(.0001,t+d);o.connect(g);g.connect(c.destination);o.start(t);o.stop(t+d+.03)},
  tap(){this.tone(540,0,.06,'sine',.07)},
  ok(s){const b=523.25*Math.pow(2,Math.min(s||0,12)/12);this.tone(b,0,.14,'triangle',.16);this.tone(b*1.5,.08,.24,'triangle',.13)},
  no(){this.tone(196,0,.24,'square',.045,130);this.tone(150,.04,.26,'sine',.12,100)},
  level(){[0,4,7,12].forEach((s,i)=>this.tone(659.25*Math.pow(2,s/12),i*.07,.2,'triangle',.12))},
  tick(){this.tone(1300,0,.035,'square',.03)},
  win(){[0,4,7,12,16].forEach((s,i)=>this.tone(523.25*Math.pow(2,s/12),i*.09,.38,'triangle',.13));this.tone(1046.5,.48,.7,'sine',.07)},
- end(){this.tone(392,0,.22,'triangle',.12);this.tone(311.1,.2,.4,'triangle',.11)}};
+ end(){this.tone(392,0,.22,'triangle',.12);this.tone(311.1,.2,.4,'triangle',.11)},
+ beeps(){[0,.17,.34,.51].forEach(t=>{this.tone(415.3,t,.11,'square',.05);this.tone(523.3,t,.11,'square',.04)})}};
+['pointerdown','keydown','touchstart'].forEach(ev=>addEventListener(ev,()=>SND.unlock(),{capture:true,passive:true}));
+document.addEventListener('visibilitychange',()=>{if(!SND.c)return;if(document.hidden)SND.c.suspend().catch(()=>{});else if(SND.on)SND.c.resume().catch(()=>{})});
 const buzz=p=>{try{if(SND.on&&navigator.vibrate)navigator.vibrate(p)}catch(e){}};
 const sndBtn=()=>`<button class="snd glass" data-snd aria-label="${SND.on?'Mute sounds':'Turn sounds on'}">${SND.on?I.sndOn:I.sndOff}</button>`;
-document.addEventListener('click',e=>{const b=e.target.closest('[data-snd]');if(!b)return;SND.on=!SND.on;store.set('snd',SND.on);document.querySelectorAll('[data-snd]').forEach(x=>{x.innerHTML=SND.on?I.sndOn:I.sndOff;x.setAttribute('aria-label',SND.on?'Mute sounds':'Turn sounds on')});SND.tap()});
+document.addEventListener('click',e=>{const b=e.target.closest('[data-snd]');if(!b)return;SND.on=!SND.on;if(SND.ka&&!SND.on){try{SND.ka.stop()}catch(x){}SND.ka=null}store.set('snd',SND.on);document.querySelectorAll('[data-snd]').forEach(x=>{x.innerHTML=SND.on?I.sndOn:I.sndOff;x.setAttribute('aria-label',SND.on?'Mute sounds':'Turn sounds on')});SND.tap()});
 function toast(msg){const d=document.createElement('div');d.className='toast glass';d.textContent=msg;document.body.appendChild(d);setTimeout(()=>d.remove(),2300)}
-function floatPts(el,txt,bad){if(!el)return;const f=document.createElement('span');f.className='float'+(bad?' no':'');f.textContent=txt;el.appendChild(f);setTimeout(()=>f.remove(),1000)}
+function floatPts(el,txt,bad){const f=document.createElement('span');f.className='float'+(bad?' no':'');f.textContent=txt;
+  let x=innerWidth/2,y=innerHeight*.45;const r=el&&el.getBoundingClientRect();
+  if(r&&r.top>90&&r.bottom<innerHeight-40){x=Math.min(innerWidth-70,r.left+r.width*.72);y=r.top+r.height/2-18}
+  f.style.left=x+'px';f.style.top=y+'px';document.body.appendChild(f);setTimeout(()=>f.remove(),1150)}
+const JOKES=[
+ {m:/obscures your view/i,e:'🍗',ok:'Chicken wing! Arm over the seat and look where you’re going.',no:'Chicken wing it. Travel in reverse, looking where you’re going.',fx:'wing'},
+ {m:/horn at a blind corner/i,e:'📢',ok:'Several short beeps, so nobody gets stabbed.',no:'Several short beeps. Long angry ones get you stabbed.',fx:'beep'},
+ {m:/metal stillages/i,e:'🔩',ok:'Metal? Forks nice and wide.',no:'Metal? Forks nice and wide. Every time.'},
+ {m:/wooden pallet/i,e:'🪵',ok:'Wood? Weight shared out equally.',no:'Wood? Spread the forks so the weight is shared equally.'},
+ {m:/walking between/i,e:'🚶',ok:'Stops Richard Head strolling between your forks and the stack.',no:'Stop short, so Richard Head can’t wander between your forks and the stack.'},
+ {m:/safety of pedestrians/i,e:'🚶',ok:'Even Richard Head. Especially Richard Head.',no:'It’s on you. Even when Richard Head walks straight out in front.'}
+];
+function joke(e,msg,race){document.querySelectorAll('.joke').forEach(j=>j.remove());const d=document.createElement('div');d.className='joke'+(race?' race':'');d.innerHTML=`<span class="e">${e}</span><span></span>`;d.lastChild.textContent=msg;document.body.appendChild(d);setTimeout(()=>d.remove(),4100)}
+function wings(){if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;for(let i=0;i<16;i++){const s=document.createElement('span');s.className='wing';s.textContent='🍗';s.style.cssText=`--x:${4+Math.random()*88}vw;--s:${30+Math.random()*28}px;--d:${2.8+Math.random()*1.6}s;--dl:${Math.random()*.9}s;--w:${(Math.random()*40-20).toFixed(0)}px`;document.body.appendChild(s);setTimeout(()=>s.remove(),5600)}}
+function fun(q,ok,race){
+  const j=JOKES.find(j=>j.m.test(q.q));
+  if(j){setTimeout(()=>{joke(j.e,ok?j.ok:j.no,race);if(ok&&j.fx==='wing')wings();if(ok&&j.fx==='beep')SND.beeps()},ok?250:450);return}
+  if(q.c&&!ok)setTimeout(()=>joke('😬','You got CAACD up.',race),450);
+}
 function confetti(){
   if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
   const c=document.createElement('canvas');c.className='confetti';document.body.appendChild(c);
@@ -321,6 +352,7 @@ function start(p,only){
 }
 
 function quiz(){
+  if(S.lastPos!==S.pos){S.lastPos=S.pos;document.querySelectorAll('.joke').forEach(j=>j.remove())}
   const P=DATA[S.paper],qi=S.idx[S.pos],q=P[qi],sel=S.sel[qi]||[],chk=practice()&&S.checked[qi];
   const n=S.idx.length,answered=S.idx.filter(j=>(S.sel[j]||[]).length).length,last=S.pos===n-1;
   const opts=q.o.map((t,i)=>{let c='opt';const on=sel.includes(i);if(chk){if(q.a.includes(i))c+=on?' right':(q.k<q.a.length?'':' miss');else if(on)c+=' wrong'}else if(on)c+=' sel';return `<button class="${c}" data-o="${i}" ${chk?'disabled':''} aria-pressed="${on}"><span class="k">${L[i]}</span><span>${esc(t)}</span></button>`}).join('');
@@ -331,10 +363,10 @@ function quiz(){
   else main=`<button class="pillbtn act" id="nx">${last?(practice()?'See results':'Finish and mark'):'Next question'}</button>`;
   const many=q.a.length>1;
   app.innerHTML=`
-  <header class="qh"><button class="back glass" id="ex" aria-label="Back to papers">${I.left}</button>
+  <div class="sticky"><header class="qh"><button class="back glass" id="ex" aria-label="Back to papers">${I.left}</button>
     <div class="tx"><b>Paper ${S.paper+1}${S.retry?' · Review mistakes':''}</b><span>Question ${S.pos+1} of ${n} · ${answered} answered</span></div>
     ${sndBtn()}${!practice()?`<span class="timer glass ${S.left<=300?'low':''}" id="tm" aria-label="Time left">${fmt(S.left)}</span>`:''}</header>
-  <div class="prog" aria-hidden="true"><i style="width:${(S.pos+1)/n*100}%"></i></div>
+  <div class="prog" aria-hidden="true"><i style="width:${(S.pos+1)/n*100}%"></i></div></div>
   <article class="qcard glass">
     <div class="tags"><span class="tag">Question ${qi+1}</span>${q.c?'<span class="tag must">Must be correct to pass</span>':''}${q.k>1?`<span class="tag">Select ${q.k} answers</span>`:''}${practice()&&S.streak>=2?`<span class="tag streak">${I.bolt}${S.streak} in a row</span>`:''}</div>
     <h2 class="qtext">${esc(q.q)}</h2>
@@ -360,7 +392,9 @@ function pick(i){
 function check(){const qi=S.idx[S.pos],q=DATA[S.paper][qi];if((S.sel[qi]||[]).length!==q.k)return;S.checked[qi]=true;
   const ok=isRight(q,S.sel[qi]);
   if(ok){S.streak++;SND.ok(S.streak-1);buzz(12);if([3,6,10,15,20].includes(S.streak)){setTimeout(()=>SND.level(),170);toast(`${S.streak} in a row`)}}else{S.streak=0;SND.no();buzz([30,50,30])}
-  quiz();const c=app.querySelector('.qcard');if(ok)floatPts(c,'Correct');else c.classList.add('shake')}
+  quiz();const c=app.querySelector('.qcard');if(ok)floatPts(app.querySelector('.opt.right'),'Correct');else c.classList.add('shake');
+  const v=app.querySelector('.verdict');if(v){const r=v.getBoundingClientRect();if(r.bottom>innerHeight-96)scrollBy({top:r.bottom-innerHeight+110,behavior:'smooth'})}
+  fun(q,ok,false)}
 function next(){
   if(S.pos<S.idx.length-1){S.pos++;quiz();window.scrollTo(0,0);return}
   const miss=S.idx.filter(j=>!(S.sel[j]||[]).length).length;
@@ -385,9 +419,9 @@ function finish(){
   const wrong=res.filter(r=>!r.ok).map(r=>r.j),C=2*Math.PI*56;
   let why;
   if(!full)why=`${score} of ${n} answered correctly this time.`;
-  else if(pass)why='You scored at least 80% and answered all five must-pass questions correctly.';
-  else if(score>=PASS)why=`Your score is high enough, but ${crit.length-critOk} must-pass question${crit.length-critOk>1?'s were':' was'} incorrect. This would be a fail.`;
-  else why=`The pass mark is 20 out of 25${critOk<crit.length?', with all five must-pass questions correct':''}.`;
+  else if(pass)why='You scored at least 80% and answered all five must-pass questions correctly. Not CAACD up.';
+  else if(score>=PASS)why=`Your score is high enough, but ${crit.length-critOk} must-pass question${crit.length-critOk>1?'s were':' was'} incorrect. You got CAACD up, so this would be a fail.`;
+  else why=`The pass mark is 20 out of 25${critOk<crit.length?', with all five must-pass questions correct. You got CAACD up as well':''}.`;
   const used=!practice()?` · ${fmt(MINS*60-S.left)} used`:'';
   app.innerHTML=`
   <header class="qh"><button class="back glass" id="hb" aria-label="Back to papers">${I.left}</button><div class="tx"><b>Paper ${S.paper+1} results</b><span>${S.retry?'Review of mistakes':S.mode==='exam'?'Exam mode':'Practice mode'}${used}</span></div></header>
@@ -434,22 +468,25 @@ function raceQ(){
   const {q,p,i}=rcur(),m=mult(R.streak),sec=Math.ceil(Math.max(0,R.left)/1000);
   R.sel=[];R.lock=false;R.qt=performance.now();
   app.innerHTML=`
-  <header class="qh"><button class="back glass" id="ex" aria-label="Leave race">${I.left}</button>
+  <div class="sticky"><header class="qh"><button class="back glass" id="ex" aria-label="Leave race">${I.left}</button>
     <div class="tx"><b>Race</b><span>${R.right} correct${R.ch?` · Target ${fmtN(R.ch.score)}`:''}</span></div>
     ${sndBtn()}<span class="timer glass ${sec<=10?'low':''}" id="tt" aria-label="Time left">${fmt(sec)}</span></header>
   <div class="tbar ${sec<=10?'low':''}"><i id="tb" style="width:${Math.max(0,R.left)/(RACE_T*10)}%"></i></div>
-  <div class="rhud"><div><span class="lbl">Points</span><b id="rs" class="${R.beat?'beat':''}">${fmtN(R.score)}</b></div><span class="mult m${m}" id="rm">${m>1?I.bolt:''}x${m}</span></div>
+  <div class="rhud"><div><span class="lbl">Points</span><b id="rs" class="${R.beat?'beat':''}">${fmtN(R.score)}</b></div><span class="mult m${m}" id="rm">${m>1?I.bolt:''}x${m}</span></div></div>
   <article class="qcard glass" id="rc">
     <div class="tags"><span class="tag">Paper ${p+1} · Q${i+1}</span>${q.c?'<span class="tag must">Must pass</span>':''}${q.k>1?`<span class="tag" id="need">Select ${q.k} answers</span>`:''}${R.streak>=2?`<span class="tag streak">${I.bolt}${R.streak} in a row</span>`:''}</div>
     <h2 class="qtext">${esc(q.q)}</h2>
     <div class="opts">${q.o.map((t,j)=>`<button class="opt" data-r="${j}"><span class="k">${L[j]}</span><span>${esc(t)}</span></button>`).join('')}</div>
   </article>`;
   app.querySelectorAll('[data-r]').forEach(b=>b.onclick=()=>racePick(+b.dataset.r));
+  window.scrollTo(0,0);
   document.getElementById('ex').onclick=()=>{R.paused=true;ask('Leave the race?','This run will not be saved.','Leave',home,()=>{R.paused=false;R.last=performance.now()})};
 }
+let lastTap=null;
 function racePick(j){
   if(!R||!R.live||R.lock||R.paused)return;const {q}=rcur();
   if(q.k===1)R.sel=[j];else R.sel=R.sel.includes(j)?R.sel.filter(x=>x!==j):[...R.sel,j];
+  lastTap=app.querySelector(`[data-r="${j}"]`);
   app.querySelectorAll('[data-r]').forEach((b,x)=>b.classList.toggle('sel',R.sel.includes(x)));
   const nd=document.getElementById('need');if(nd)nd.textContent=R.sel.length<q.k?`Select ${q.k-R.sel.length} more`:'Checking';
   if(R.sel.length===q.k)raceSubmit();else SND.tap();
@@ -462,9 +499,12 @@ function raceSubmit(){
   if(ok){
     R.streak++;R.right++;R.bestStreak=Math.max(R.bestStreak,R.streak);
     const m=mult(R.streak),t=performance.now()-R.qt,bonus=Math.round(Math.max(0,Math.min(50,50*(1-(t-2500)/7500)))),pts=((q.k>1?150:100)+bonus)*m;
-    R.score+=pts;floatPts(card,'+'+fmtN(pts));SND.ok(R.streak-1);buzz(12);
+    R.score+=pts;floatPts(lastTap,'+'+fmtN(pts));SND.ok(R.streak-1);buzz(12);
     if(m>before){setTimeout(()=>SND.level(),170);toast(`${R.streak} in a row. Points x${m}`)}
-  }else{R.streak=0;R.left-=3000;floatPts(card,'−3 seconds',true);SND.no();buzz([30,50,30]);card.classList.add('shake')}
+  }else{R.streak=0;R.left-=3000;floatPts(lastTap,'−3 seconds',true);SND.no();buzz([30,50,30]);card.classList.add('shake');
+    const a=app.querySelector('.opt.right,.opt.miss');if(a){const r=a.getBoundingClientRect();if(r.top<170||r.bottom>innerHeight-20)a.scrollIntoView({block:'center',behavior:'smooth'})}
+    const tt=document.getElementById('tt');if(tt){tt.textContent=fmt(Math.ceil(Math.max(0,R.left)/1000))}}
+  fun(q,ok,true);
   const rs=document.getElementById('rs'),rm=document.getElementById('rm'),m2=mult(R.streak);
   rs.textContent=fmtN(R.score);rm.className='mult m'+m2+(m2!==before?' pop':'');rm.innerHTML=(m2>1?I.bolt:'')+'x'+m2;
   if(R.ch&&!R.beat&&R.score>R.ch.score){R.beat=true;rs.classList.add('beat');setTimeout(()=>SND.level(),420);setTimeout(()=>toast(`You've passed ${R.ch.name}'s score`),300)}
